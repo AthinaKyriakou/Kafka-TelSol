@@ -1,5 +1,6 @@
 # Kafka-telsol
 A NTUA IT Infrastructure Design Class project...
+JDBC Sink instructions adapted from this [video](https://www.youtube.com/watch?v=b-3qN_tlYR4).
 
 ## Linux Installation Instructions
 
@@ -8,7 +9,7 @@ A NTUA IT Infrastructure Design Class project...
 1. Select your server (i.e. Debian, Fedora, Ubuntu) from [here](https://docs.docker.com/engine/install/#server).
 2. Follow the instructions on sections `SET UP THE REPOSITORY` and `INSTALL DOCKER ENGINE`.
 
-### 2. Clone this repository
+### 2. Clone this repo
 
 ```bash
 git clone https://github.com/AthinaKyriakou/kafka-telsol.git
@@ -37,3 +38,84 @@ docker-compose ps
 | mysql           | docker-entrypoint.sh mysqld    | Up           | 0.0.0.0:3306->3306/tcp, 33060/tcp |
 | schema-registry | /etc/confluent/docker/run      | Up           | 0.0.0.0:8081->8081/tcp            |
 | zookeeper       | /etc/confluent/docker/run      | Up           | 2181/tcp, 2888/tcp, 3888/tcp      |
+
+### 4. Create the Sink JDBC MySQL connector using the REST interface of Kafka
+```bash
+curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
+     -H "Content-Type: application/json" -d '{
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:mysql://mysql:3306/demo",
+    "topics": "test01",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "connection.user": "connect_user",
+    "connection.password": "asgard",
+    "auto.create": true,
+    "auto.evolve": true,
+    "insert.mode": "insert",
+    "pk.mode": "record_key",
+    "pk.fields": "MESSAGE_KEY"
+}'
+```
+Remember to customize the *topics* for your implementation. Here we insert data to the db from the `test01` topic. Each topic will create its own table in the db.
+
+### 5. Check that the JDBC driver is in the correct place (optional)
+
+#### 1. Find the location of the JDBC plugin
+```bash
+docker-compose logs kafka-connect|grep kafka-connect-jdbc|more
+```
+Copy path: `INFO Loading plugin from: <path>`
+
+#### 2. Get into the kafka-connect container and cd into the found path
+```bash
+docker exec -it kafka-connect bash
+cd <path>
+ls
+```
+Within this folder there needs to be the jar of the JDBC driver.
+
+## Start Playing
+
+#### In a terminal start ksqldb (to interface with Kafka)
+```bash
+docker exec -it ksqldb ksql http://ksqldb:8088
+```
+
+### 1. Check that the Sink JDBC MySQL connector is working from the ksqldb terminal
+```bash
+show connectors;
+```
+
+### 2. Create a topic and publish data from the ksqldb terminal
+
+#### Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
+```bash
+CREATE STREAM TEST01 (COL1 INT, COL2 VARCHAR)
+  WITH (KAFKA_TOPIC='test01', PARTITIONS=1, VALUE_FORMAT='AVRO');
+```
+
+#### Insert dummy data to test01 topic
+```bash
+INSERT INTO TEST01 (ROWKEY, COL1, COL2) VALUES ('X',1,'FOO');
+INSERT INTO TEST01 (ROWKEY, COL1, COL2) VALUES ('Y',2,'BAR');
+```
+
+#### Show topics and print the data
+```bash
+SHOW TOPICS;
+PRINT test01 FROM BEGINNING;
+```
+
+### 3. Check the created test01 table and the inserted data in MySQL
+
+In a new terminal open MySQL:
+```bash
+docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
+```
+
+Use the created db, see the created table from the `test01` topic and see the inserted data.
+```bash
+use demo;
+show tables;
+select * from test01;
+```
