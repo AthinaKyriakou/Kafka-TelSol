@@ -27,14 +27,14 @@ docker-compose up -d
 ```bash
 docker-compose ps
 ```
-     Name                    Command                  State                     Ports
----------------------------------------------------------------------------------------------------
-broker            /etc/confluent/docker/run        Up             0.0.0.0:9092->9092/tcp
-kafka-connect     bash -c cd /usr/share/conf ...   Up (healthy)   0.0.0.0:8083->8083/tcp, 9092/tcp
-kafkacat          /bin/sh -c apk add jq;           Up
-                  wh ...
-ksqldb            /usr/bin/docker/run              Up             0.0.0.0:8088->8088/tcp
-mysql             docker-entrypoint.sh mysqld      Up             0.0.0.0:3306->3306/tcp, 33060/tcp
-schema-registry   /etc/confluent/docker/run        Up             0.0.0.0:8081->8081/tcp
-zookeeper         /etc/confluent/docker/run        Up             2181/tcp, 2888/tcp, 3888/tcp
-----
+
+| Container name  | Command                        | State        | Ports                             |
+|:----------------|:-------------------------------|:-------------|:----------------------------------|
+| broker          | /etc/confluent/docker/run      | Up           | 0.0.0.0:9092->9092/tcp            |
+| kafka-connect   | bash -c cd /usr/share/conf ... | Up (healthy) | 0.0.0.0:8083->8083/tcp, 9092/tcp  |
+| kafkacat        | /bin/sh -c apk add jq;         | Up           |                                   |
+|                 | wh ...                         |              |                                   |
+| ksqldb          | /usr/bin/docker/run            | Up           | 0.0.0.0:8088->8088/tcp            |
+| mysql           | docker-entrypoint.sh mysqld    | Up           | 0.0.0.0:3306->3306/tcp, 33060/tcp |
+| schema-registry | /etc/confluent/docker/run      | Up           | 0.0.0.0:8081->8081/tcp            |
+| zookeeper       | /etc/confluent/docker/run      | Up           | 2181/tcp, 2888/tcp, 3888/tcp      |
