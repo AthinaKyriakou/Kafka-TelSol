@@ -140,11 +140,11 @@ services:
       KSQL_KSQL_HIDDEN_TOPICS: '^_.*'
 
 # Other systems
-# Mysql sink db
   mysql:
     # *-----------------------------*
     # To connect to the DB: 
     #   docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
+    #   docker exec -it mysql bash -c 'mysql -u$MYSQL_USER -p$MYSQL_PASSWORD'
     # *-----------------------------*
     image: mysql:8.0
     container_name: mysql
@@ -152,8 +152,8 @@ services:
       - 3306:3306
     environment:
      - MYSQL_ROOT_PASSWORD=Admin123
-     - MYSQL_USER=connect_user
-     - MYSQL_PASSWORD=asgard
+     - MYSQL_USER=athina
+     - MYSQL_PASSWORD=athina
     volumes:
      - ./data/mysql:/docker-entrypoint-initdb.d/
 

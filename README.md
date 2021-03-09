@@ -2,12 +2,15 @@
 A NTUA IT Infrastructure Design Class project...
 JDBC Sink instructions adapted from this [video](https://www.youtube.com/watch?v=b-3qN_tlYR4).
 
+
+
 ## Linux Installation Instructions
 
 ### 1. Install Docker
 
 1. Select your server (i.e. Debian, Fedora, Ubuntu) from [here](https://docs.docker.com/engine/install/#server).
 2. Follow the instructions on sections `SET UP THE REPOSITORY` and `INSTALL DOCKER ENGINE`.
+
 
 ### 2. Clone this repo
 
@@ -39,26 +42,9 @@ docker-compose ps
 | schema-registry | /etc/confluent/docker/run      | Up           | 0.0.0.0:8081->8081/tcp            |
 | zookeeper       | /etc/confluent/docker/run      | Up           | 2181/tcp, 2888/tcp, 3888/tcp      |
 
-### 4. Create the Sink JDBC MySQL connector using the REST interface of Kafka
-```bash
-curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
-     -H "Content-Type: application/json" -d '{
-    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
-    "connection.url": "jdbc:mysql://mysql:3306/demo",
-    "topics": "test01",
-    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
-    "connection.user": "connect_user",
-    "connection.password": "asgard",
-    "auto.create": true,
-    "auto.evolve": true,
-    "insert.mode": "insert",
-    "pk.mode": "record_key",
-    "pk.fields": "MESSAGE_KEY"
-}'
-```
-Remember to customize the *topics* for your implementation. Here we insert data to the db from the `test01` topic. Each topic will create its own table in the db.
 
-### 5. Check that the JDBC driver is in the correct place (optional)
+### 4. Check the installation of the MySQL JDBC driver (optional)
+
 
 #### 1. Find the location of the JDBC plugin
 ```bash
@@ -72,7 +58,8 @@ docker exec -it kafka-connect bash
 cd <path>
 ls
 ```
-Within this folder there needs to be the jar of the JDBC driver.
+Within this folder there needs to be the `mysql-connector-java-8.0.23.jar` of the JDBC driver.
+
 
 ## Start Playing
 
@@ -81,12 +68,7 @@ Within this folder there needs to be the jar of the JDBC driver.
 docker exec -it ksqldb ksql http://ksqldb:8088
 ```
 
-### 1. Check that the Sink JDBC MySQL connector is working from the ksqldb terminal
-```bash
-show connectors;
-```
-
-### 2. Create a topic and publish data from the ksqldb terminal
+### 1. Create a topic and publish data from the ksqldb terminal
 
 #### Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
 ```bash
@@ -106,6 +88,52 @@ SHOW TOPICS;
 PRINT test01 FROM BEGINNING;
 ```
 
+### 2. Connect and insert `test01` topic's data in the MySQL DB
+
+#### a. In a new terminal open MySQL as root, create a `demo` database and grant privileges to `athina` user (which is the MYSQL_USER=athina in the docker-compose.yml file)
+```bash
+docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
+```
+
+```bash
+create database demo;
+grant all on demo.* to 'athina'@'%';
+```
+
+To check that privileges where successfully granted you can start MySQL as `athina` user
+```bash
+docker exec -it mysql bash -c 'mysql -u$MYSQL_USER -p$MYSQL_PASSWORD'
+```
+and run
+```bash
+use demo;
+show grants;
+```
+
+#### b. Create the Sink JDBC MySQL connector using the REST interface of Kafka
+```bash
+curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
+     -H "Content-Type: application/json" -d '{
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:mysql://mysql:3306/demo",
+    "topics": "test01",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "connection.user": "athina",
+    "connection.password": "athina",
+    "auto.create": true,
+    "auto.evolve": true,
+    "insert.mode": "insert",
+    "pk.mode": "record_key",
+    "pk.fields": "MESSAGE_KEY"
+}'
+```
+Here we insert data to the `demo` db from the `test01` topic. Each topic will create its own table in the db.
+
+#### c. Check that the Sink JDBC MySQL connector is working from the *ksqldb* terminal
+```bash
+show connectors;
+```
+
 ### 3. Check the created test01 table and the inserted data in MySQL
 
 In a new terminal open MySQL:
@@ -113,9 +141,17 @@ In a new terminal open MySQL:
 docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
 ```
 
-Use the created db, see the created table from the `test01` topic and see the inserted data.
+Use the created db, see the created table from the `test01` topic the inserted data.
 ```bash
 use demo;
-show tables;
 select * from test01;
+```
+Keep publishing data to the `test01` topic from the ksqldb. The data will appear in the `test01` table of the demo database.
+
+
+## Logs
+
+### Kafka Connect
+```bash
+docker logs -f kafka-connect
 ```
