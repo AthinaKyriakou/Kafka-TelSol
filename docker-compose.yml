@@ -108,12 +108,18 @@ services:
         #
         echo "Downloading JDBC driver"
         cd /usr/share/confluent-hub-components/confluentinc-kafka-connect-jdbc
-        curl https://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-8.0.19.tar.gz | tar xz 
+        curl -L -o mysql-connector-java.tar.gz https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.23.tar.gz
+        tar -xf mysql-connector-java.tar.gz
+        mv /usr/share/confluent-hub-components/confluentinc-kafka-connect-jdbc/mysql-connector-java-8.0.23/mysql-connector-java-8.0.23.jar /usr/share/confluent-hub-components/confluentinc-kafka-connect-jdbc
+        rm -r /usr/share/confluent-hub-components/confluentinc-kafka-connect-jdbc/mysql-connector-java-8.0.23
+        rm -r /usr/share/confluent-hub-components/confluentinc-kafka-connect-jdbc/mysql-connector-java.tar.gz
         #
         echo "Launching Kafka Connect worker"
         /etc/confluent/docker/run & 
         #
         sleep infinity
+
+
   ksqldb:
     image: confluentinc/ksqldb-server:0.8.0
     hostname: ksqldb
