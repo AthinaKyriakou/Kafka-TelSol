@@ -16,13 +16,17 @@ JDBC Sink instructions adapted from this [video](https://www.youtube.com/watch?v
 
 ```bash
 git clone https://github.com/AthinaKyriakou/kafka-telsol.git
-
 cd kafka-telsol
 ```
 
-### 3. Docker Compose
 
-1. Bring the Docker Compose up. The first time it runs for long...
+## Start Playing
+
+Open a terminal into the *kafka-telsol* directory.
+
+### 1. Start your containers with Docker Compose
+
+1. Run Docker Compose on a terminal. The first time it runs for long...
 ```bash
 docker-compose up -d
 ```
@@ -43,16 +47,15 @@ docker-compose ps
 | zookeeper       | /etc/confluent/docker/run      | Up           | 2181/tcp, 2888/tcp, 3888/tcp      |
 
 
-### 4. Check the installation of the MySQL JDBC driver (optional)
+### 2. Check the installation of the MySQL JDBC driver (optional)
 
-
-#### 1. Find the location of the JDBC plugin
+#### a. Find the location of the JDBC plugin
 ```bash
 docker-compose logs kafka-connect|grep kafka-connect-jdbc|more
 ```
 Copy path: `INFO Loading plugin from: <path>`
 
-#### 2. Get into the kafka-connect container and cd into the found path
+#### b. Get into the kafka-connect container and cd into the found path
 ```bash
 docker exec -it kafka-connect bash
 cd <path>
@@ -61,36 +64,34 @@ ls
 Within this folder there needs to be the `mysql-connector-java-8.0.23.jar` of the JDBC driver.
 
 
-## Start Playing
+### 3. Create Kafka topics and publish data
 
-#### In a terminal start ksqldb (to interface with Kafka)
+#### a. In a new terminal start ksqldb (to interface with Kafka)
 ```bash
 docker exec -it ksqldb ksql http://ksqldb:8088
 ```
 
-### 1. Create a topic and publish data from the ksqldb terminal
-
-#### Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
+#### b. Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
 ```bash
 CREATE STREAM TEST01 (COL1 INT, COL2 VARCHAR)
   WITH (KAFKA_TOPIC='test01', PARTITIONS=1, VALUE_FORMAT='AVRO');
 ```
 
-#### Insert dummy data to test01 topic
+#### c. Insert dummy data to test01 topic
 ```bash
 INSERT INTO TEST01 (ROWKEY, COL1, COL2) VALUES ('X',1,'FOO');
 INSERT INTO TEST01 (ROWKEY, COL1, COL2) VALUES ('Y',2,'BAR');
 ```
 
-#### Show topics and print the data
+#### d. Show topics and print the data
 ```bash
 SHOW TOPICS;
 PRINT test01 FROM BEGINNING;
 ```
 
-### 2. Connect and insert `test01` topic's data in the MySQL DB
+### 4. Insert the data from test01 topic to MySQL db
 
-#### a. In a new terminal open MySQL as root, create a `demo` database and grant privileges to `athina` user (which is the MYSQL_USER=athina in the docker-compose.yml file)
+#### a. In a new terminal open MySQL as root, create a demo database and grant privileges to athina user (which is the MYSQL_USER=athina in the docker-compose.yml file)
 ```bash
 docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
 ```
@@ -100,7 +101,7 @@ create database demo;
 grant all on demo.* to 'athina'@'%';
 ```
 
-To check that privileges where successfully granted you can start MySQL as `athina` user
+To check that privileges were granted you can start MySQL as `athina` user
 ```bash
 docker exec -it mysql bash -c 'mysql -u$MYSQL_USER -p$MYSQL_PASSWORD'
 ```
@@ -111,6 +112,9 @@ show grants;
 ```
 
 #### b. Create the Sink JDBC MySQL connector using the REST interface of Kafka
+
+In a new terminal:
+
 ```bash
 curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
      -H "Content-Type: application/json" -d '{
@@ -127,9 +131,10 @@ curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
     "pk.fields": "MESSAGE_KEY"
 }'
 ```
-Here we insert data to the `demo` db from the `test01` topic. Each topic will create its own table in the db.
+Here we insert data to the demo db from the test01 topic. Each topic will create its own table in the db.
 
-#### c. Check that the Sink JDBC MySQL connector is working from the *ksqldb* terminal
+
+#### c. Check that the Sink JDBC MySQL connector is working from the ksqldb terminal
 ```bash
 show connectors;
 ```
@@ -149,9 +154,16 @@ select * from test01;
 Keep publishing data to the `test01` topic from the ksqldb. The data will appear in the `test01` table of the demo database.
 
 
-## Logs
+## For logs
 
 ### Kafka Connect
 ```bash
 docker logs -f kafka-connect
 ```
+
+## Terminal Hack
+To keep track of what is happening, I usually have the following terminals open:
+* MySQL: ```bash docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'```
+* ksqlDB: ```docker exec -it ksqldb ksql http://ksqldb:8088```
+* one open in the kafka-telsol folder
+* logs: ```bash docker logs -f kafka-connect```
