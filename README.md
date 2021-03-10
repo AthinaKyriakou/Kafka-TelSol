@@ -70,11 +70,20 @@ Within this folder there needs to be the `mysql-connector-java-8.0.23.jar` of th
 
 Adapted from [here](https://kafka-tutorials.confluent.io/creating-first-apache-kafka-producer-application/kafka.html).
 
-When you run the consumer for the *first* time: ```bash gradle wrapper```
+When you run the consumer for the *first* time:
+```bash 
+gradle wrapper
+```
 
-To compile the app: ```bash ./gradlew shadowJar```
+To compile the app: 
+```bash 
+./gradlew shadowJar
+```
 
-To launch the app: ```bash java -jar build/libs/kafka-producer-application-standalone-0.0.1.jar```
+To launch the app: 
+```bash 
+java -jar build/libs/kafka-producer-application-standalone-0.0.1.jar
+```
 
 
 #### b. In a new terminal start ksqldb (to interface with Kafka)
@@ -174,6 +183,15 @@ docker logs -f kafka-connect
 ## Terminal Hack
 To keep track of what is happening, I usually have the following terminals open:
 * one open in the kafka-telsol folder
-* MySQL: ```bash docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'```
-* ksqlDB: ```docker exec -it ksqldb ksql http://ksqldb:8088```
-* logs: ```bash docker logs -f kafka-connect```
+* MySQL: 
+```bash 
+docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
+```
+* ksqlDB: 
+```bash
+docker exec -it ksqldb ksql http://ksqldb:8088
+```
+* logs:
+```bash 
+docker logs -f kafka-connect
+```
