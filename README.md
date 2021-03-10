@@ -66,24 +66,34 @@ Within this folder there needs to be the `mysql-connector-java-8.0.23.jar` of th
 
 ### 3. Create Kafka topics and publish data
 
-#### a. In a new terminal start ksqldb (to interface with Kafka)
-```bash
-docker exec -it ksqldb ksql http://ksqldb:8088
-```
+#### a. From the customized Java producer kafka-telsol/src/main/java/io/confluent/developer/KafkaProducerApplication.java
 
-#### b. Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
+Adapted from [here](https://kafka-tutorials.confluent.io/creating-first-apache-kafka-producer-application/kafka.html).
+
+When you run the consumer for the *first* time: ```bash gradle wrapper```
+
+To compile the app: ```bash ./gradlew shadowJar```
+
+To launch the app: ```bash java -jar build/libs/kafka-producer-application-standalone-0.0.1.jar```
+
+
+#### b. In a new terminal start ksqldb (to interface with Kafka)
+
+In new terminal start ksqldb: ```bash docker exec -it ksqldb ksql http://ksqldb:8088```
+
+Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
 ```bash
 CREATE STREAM TEST01 (COL1 INT, COL2 VARCHAR)
   WITH (KAFKA_TOPIC='test01', PARTITIONS=1, VALUE_FORMAT='AVRO');
 ```
 
-#### c. Insert dummy data to test01 topic
+Insert dummy data to test01 topic
 ```bash
 INSERT INTO TEST01 (ROWKEY, COL1, COL2) VALUES ('X',1,'FOO');
 INSERT INTO TEST01 (ROWKEY, COL1, COL2) VALUES ('Y',2,'BAR');
 ```
 
-#### d. Show topics and print the data
+Show topics and print the data
 ```bash
 SHOW TOPICS;
 PRINT test01 FROM BEGINNING;
@@ -163,7 +173,7 @@ docker logs -f kafka-connect
 
 ## Terminal Hack
 To keep track of what is happening, I usually have the following terminals open:
+* one open in the kafka-telsol folder
 * MySQL: ```bash docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'```
 * ksqlDB: ```docker exec -it ksqldb ksql http://ksqldb:8088```
-* one open in the kafka-telsol folder
 * logs: ```bash docker logs -f kafka-connect```
