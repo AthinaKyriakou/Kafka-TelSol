@@ -56,7 +56,7 @@ public class KafkaProducerApplication  {
 		String topic = "topic2";
 		consumer.subscribe(Arrays.asList(topic));
 
-		String message, key = "DEH";
+		String key = "DEH";
 		String userSchema = "{\"type\":\"record\"," +
 							"\"name\":\"myrecord\"," +
 							"\"fields\":[{\"name\":\"f1\",\"type\":\"string\"}]}";
@@ -70,7 +70,9 @@ public class KafkaProducerApplication  {
 				GenericRecord avroRecord = new GenericData.Record(schema);
 				avroRecord.put("f1", "value" + Integer.toString(messages_produced));
 				ProducerRecord<Object, Object> record = new ProducerRecord<>("topic1", key, avroRecord);
-				
+				System.out.printf("producing recordddddddddddddddddddddddddddddddddddddddddd \n");
+				System.out.printf("producing recordddddddddddddddddddddddddddddddddddddddddd \n");
+				System.out.printf("producing recordddddddddddddddddddddddddddddddddddddddddd \n");
 				producer.send(record);
 				producer.flush();
 				messages_produced++;
@@ -84,13 +86,13 @@ public class KafkaProducerApplication  {
 				while(messages_produced > synch_received) {
 					ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
 					for (ConsumerRecord<String, GenericRecord> record : records) {
-						message = record.value();
+						//check if status = submitted
 						if((record.key()).toString().equals(key.toString()) && (messages_produced > synch_received)) {
 							System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value() + "  synch???");
 							synch_received++;
 						}
 						else {
-							if((record.value()).contains(key.toString())) {
+							if((record.key()).toString().equals(key.toString())) {
 								System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value() + "  asynch special???");
 								asynch_received++;
 							}
@@ -101,7 +103,7 @@ public class KafkaProducerApplication  {
 			else {
 				ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
 				for (ConsumerRecord<String, GenericRecord> record : records) {
-					if((record.value()).contains(key.toString())) {
+					if((record.key()).toString().equals(key.toString())) {
 						System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value() + "  asynch???");
 						asynch_received++;
 					}
