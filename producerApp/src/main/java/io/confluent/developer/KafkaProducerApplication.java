@@ -29,9 +29,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 
-public class KafkaProducerApplication {
+public class KafkaProducerApplication  {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception{
 		
 		Properties props_producer = new Properties();
 		Properties props_consumer = new Properties();
@@ -53,7 +53,7 @@ public class KafkaProducerApplication {
 		
 		
 
-		String topic = "topic1";
+		String topic = "topic2";
 		consumer.subscribe(Arrays.asList(topic));
 
 		String message, key = "DEH";
@@ -64,54 +64,50 @@ public class KafkaProducerApplication {
 		Schema.Parser parser = new Schema.Parser();
 		Schema schema = parser.parse(userSchema);
 
-        String producer_key, status, running_status = "up";
-
 		//infinte poll loop
-		while(true) {
-            ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
-			for (ConsumerRecord<String, GenericRecord> record : records) {
-                System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
-                producer_key = record.key();
+		while((messages_produced > asynch_received) || (messages_produced < 5)) {
+			if(messages_produced < 5) {
+				GenericRecord avroRecord = new GenericData.Record(schema);
+				avroRecord.put("f1", "value" + Integer.toString(messages_produced));
+				ProducerRecord<Object, Object> record = new ProducerRecord<>("topic1", key, avroRecord);
+				
+				producer.send(record);
+				producer.flush();
+				messages_produced++;
 
-                GenericRecord avroRecord = new GenericData.Record(schema);
-				avroRecord.put("f1", " Consumed Test Message from #" + producer_key + "with value : " + record.value() + "# SYCHRONOUSLY");
-
-                ProducerRecord<Object, Object> producerRecord_synch =
-                        new ProducerRecord<>("topic2", producer_key, avroRecord);
-                producer.send(producerRecord_synch);
-                producer.flush();
-
-                if(producer_key == "admin") {
-                    running_status = "down";
-                    break;
-                }
-                //sleep for 3 seconds
-                try
-                {
-                    Thread.sleep(3000);
-                }
-                catch(InterruptedException ex)
-                {
-                    Thread.currentThread().interrupt();
-                }
-                
-                // do something
-                status = "success";
-
-                GenericRecord avroRecord_asynch = new GenericData.Record(schema);
-				avroRecord_asynch.put("f1", "Finalized Test Message #" + producer_key + "# ASYNCHRONOUSLY with status: " + status);
-                
-                ProducerRecord<Object, Object> producerRecord_asynch =
-                        new ProducerRecord<>("topic2", producer_key, avroRecord_asynch);
-                producer.send(producerRecord_asynch);
-                producer.flush();
-                
-            }
-            if(running_status == "down")
-                break;
+			}
 
 
-            
+			//read until you have received synch
+			//read until you get the asynch
+			if(messages_produced > synch_received) {
+				while(messages_produced > synch_received) {
+					ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
+					for (ConsumerRecord<String, GenericRecord> record : records) {
+						message = record.value();
+						if((record.key()).toString().equals(key.toString()) && (messages_produced > synch_received)) {
+							System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value() + "  synch???");
+							synch_received++;
+						}
+						else {
+							if((record.value()).contains(key.toString())) {
+								System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value() + "  asynch special???");
+								asynch_received++;
+							}
+						}
+					}
+				}
+			}
+			else {
+				ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
+				for (ConsumerRecord<String, GenericRecord> record : records) {
+					if((record.value()).contains(key.toString())) {
+						System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value() + "  asynch???");
+						asynch_received++;
+					}
+					
+				}
+			}
 			
 		}
 
