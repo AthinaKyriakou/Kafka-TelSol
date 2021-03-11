@@ -53,7 +53,7 @@ docker-compose ps
 ```bash
 docker-compose logs kafka-connect|grep kafka-connect-jdbc|more
 ```
-Copy path: `INFO Loading plugin from: <path>`
+Copy path: **INFO Loading plugin from: <path>**
 
 #### b. Get into the kafka-connect container and cd into the found path
 ```bash
@@ -61,34 +61,41 @@ docker exec -it kafka-connect bash
 cd <path>
 ls
 ```
-Within this folder there needs to be the `mysql-connector-java-8.0.23.jar` of the JDBC driver.
+Within this folder there needs to be the **mysql-connector-java-8.0.23.jar** of the JDBC driver.
 
 
-### 3. Create Kafka topics and publish data
+### 3. Producer: Create Kafka topics and publish data
 
-#### a. From the customized Java producer kafka-telsol/src/main/java/io/confluent/developer/KafkaProducerApplication.java
+#### a. From the customized Java producerApp
 
 Adapted from [here](https://kafka-tutorials.confluent.io/creating-first-apache-kafka-producer-application/kafka.html).
 
-When you run the consumer for the *first* time:
+Get in the producerApp folder:
+```bash 
+cd producerApp
+```
+
+When you run the producer for the **first** time:
 ```bash 
 gradle wrapper
 ```
 
-To compile the app: 
+Compile the producerApp: 
 ```bash 
 ./gradlew shadowJar
 ```
 
-To launch the app: 
+Run the producerApp: 
 ```bash 
 java -jar build/libs/kafka-producer-application-standalone-0.0.1.jar
 ```
 
-
 #### b. In a new terminal start ksqldb (to interface with Kafka)
 
-In new terminal start ksqldb: ```bash docker exec -it ksqldb ksql http://ksqldb:8088```
+In new terminal start ksqldb: 
+```bash 
+docker exec -it ksqldb ksql http://ksqldb:8088
+```
 
 Create the test01 topic using Apache Avro to manage the schema (alternative JSON)
 ```bash
@@ -108,7 +115,31 @@ SHOW TOPICS;
 PRINT test01 FROM BEGINNING;
 ```
 
-### 4. Insert the data from test01 topic to MySQL db
+### 4. Consumer: Read data from Kafka topics
+
+#### a. From the customized Java consumerApp
+
+Get in the consumerApp folder:
+```bash 
+cd consumerApp
+```
+
+When you run the consumer for the **first** time:
+```bash 
+gradle wrapper
+```
+
+Compile the consumerApp: 
+```bash 
+./gradlew shadowJar
+```
+
+Run the consumerApp: 
+```bash 
+java -jar build/libs/kafka-consumer-application-standalone-0.0.1.jar
+```
+
+### 5. Insert data from a topic to MySQL db
 
 #### a. In a new terminal open MySQL as root, create a demo database and grant privileges to athina user (which is the MYSQL_USER=athina in the docker-compose.yml file)
 ```bash
@@ -120,7 +151,7 @@ create database demo;
 grant all on demo.* to 'athina'@'%';
 ```
 
-To check that privileges were granted you can start MySQL as `athina` user
+To check that privileges were granted you can start MySQL as **athina** user
 ```bash
 docker exec -it mysql bash -c 'mysql -u$MYSQL_USER -p$MYSQL_PASSWORD'
 ```
@@ -150,7 +181,7 @@ curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
     "pk.fields": "MESSAGE_KEY"
 }'
 ```
-Here we insert data to the demo db from the test01 topic. Each topic will create its own table in the db.
+Here we insert data to the demo db from the **test01** topic. Each topic will create its own table in the db.
 
 
 #### c. Check that the Sink JDBC MySQL connector is working from the ksqldb terminal
@@ -158,19 +189,19 @@ Here we insert data to the demo db from the test01 topic. Each topic will create
 show connectors;
 ```
 
-### 6. Check the created test01 table and the inserted data in MySQL
+### 6. Check the created topic table and the inserted data in MySQL
 
 In a new terminal open MySQL:
 ```bash
 docker exec -it mysql bash -c 'mysql -u root -p$MYSQL_ROOT_PASSWORD'
 ```
 
-Use the created db, see the created table from the `test01` topic the inserted data.
+Use the created db, see the created table from the **test01** topic the inserted data.
 ```bash
 use demo;
 select * from test01;
 ```
-Keep publishing data to the `test01` topic from the ksqldb. The data will appear in the `test01` table of the demo database.
+Keep publishing data to the **test01** topic from the ksqldb. The data will appear in the **test01** table of the demo database.
 
 
 ## For logs
