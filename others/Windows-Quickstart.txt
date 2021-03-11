@@ -1,0 +1,31 @@
+Zookeeper - Start
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Kafka Environment- Start
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+
+
+TOPIC - Create
+.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic TestTopic
+
+repartition factor = total copies of partition into different clusters. Should be 2 or 3
+Partitions = Partitions in each Topic
+TestTopic = Name of topic
+
+
+TOPIC - List available Topics
+.\bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+
+TOPIC Delete:
+.\bin\windows\kafka-topics.bat --zookeeper localhost:2181 --delete --topic NewTopic
+
+
+Produce Messages:
+.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic TestTopic
+
+
+Consume Messages:
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic TestTopic --from-beginning
+
+

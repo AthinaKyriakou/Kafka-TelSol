@@ -158,7 +158,7 @@ Here we insert data to the demo db from the test01 topic. Each topic will create
 show connectors;
 ```
 
-### 3. Check the created test01 table and the inserted data in MySQL
+### 6. Check the created test01 table and the inserted data in MySQL
 
 In a new terminal open MySQL:
 ```bash
