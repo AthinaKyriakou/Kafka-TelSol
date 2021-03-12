@@ -1,7 +1,6 @@
 package io.confluent.developer;
 
-// write to topic producer_test
-// read from consumer_test
+
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
@@ -53,16 +52,17 @@ public class KafkaConsumerApplication {
 		
 		
 
-		String topic = "topic1";
+		String topic = "insertion";
 		consumer.subscribe(Arrays.asList(topic));
 
-		String message, key = "DEH";
-		String userSchema = "{\"type\":\"record\"," +
+		String ackSchema = "{\"type\":\"record\"," +
 							"\"name\":\"myrecord\"," +
-							"\"fields\":[{\"name\":\"f1\",\"type\":\"string\"}]}";
+							"\"fields\":[{\"name\":\"ACK_Message\",\"type\":\"string\"}]}";
+		
+
 		int messages_produced = 0, synch_received = 0, asynch_received = 0;
 		Schema.Parser parser = new Schema.Parser();
-		Schema schema = parser.parse(userSchema);
+		Schema schema = parser.parse(ackSchema);
 
         String producer_key, status, running_status = "up";
 
@@ -70,25 +70,25 @@ public class KafkaConsumerApplication {
 		while(true) {
             ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
 			for (ConsumerRecord<String, GenericRecord> record : records) {
-                System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+                System.out.printf("\n\n\n\n\noffset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
                 producer_key = record.key();
 
                 GenericRecord avroRecord = new GenericData.Record(schema);
-				avroRecord.put("f1", " Consumed Test Message from #" + producer_key + "with value : " + record.value() + "# SYCHRONOUSLY");
+				avroRecord.put("ACK_Message", " Consumed Message from " + producer_key + " with value : " + record.value() + " % Synch %");
 
                 ProducerRecord<Object, Object> producerRecord_synch =
-                        new ProducerRecord<>("topic2", producer_key, avroRecord);
+                    new ProducerRecord<>("ack", producer_key, avroRecord);
                 producer.send(producerRecord_synch);
                 producer.flush();
 
-                if(producer_key == "admin") {
+                if(producer_key.toString().equals("admin")) {
                     running_status = "down";
                     break;
                 }
                 //sleep for 3 seconds
                 try
                 {
-                    Thread.sleep(3000);
+                    Thread.sleep(5000);
                 }
                 catch(InterruptedException ex)
                 {
@@ -96,30 +96,35 @@ public class KafkaConsumerApplication {
                 }
                 
                 // do something
-                status = "success";
+				if(producer_key.toString().equals("WRONG")){
+					status = "Error:\nType: Fiber Wire Discontinuity\nLocation: 10, [38.043908, 23.816087], Ari Fakinou 2-68, Marousi.\nComments: Closest point to Fiber Wire line: 11, [38.042463, 23.815143], Sorou 71, Marousi.";
+				}
+				else {
+					status = "Successfully Completed";
+				}
+                
+				if (status == "Successfully Completed") {
+					System.out.printf("nothing\n\n\n");
+					ProducerRecord<Object, GenericRecord> infrastructure_record =
+						new ProducerRecord<>("infrastructure_data", producer_key, record.value());
+					producer.send(infrastructure_record);
+					producer.flush();
+				}
 
                 GenericRecord avroRecord_asynch = new GenericData.Record(schema);
-				avroRecord_asynch.put("f1", "Finalized Test Message #" + producer_key + "# ASYNCHRONOUSLY with status: " + status);
+				avroRecord_asynch.put("ACK_Message", "Finalized Message " + producer_key + " % Asynch % with Status: " + status);
                 
                 ProducerRecord<Object, Object> producerRecord_asynch =
-                        new ProducerRecord<>("topic2", producer_key, avroRecord_asynch);
+                    new ProducerRecord<>("ack", producer_key, avroRecord_asynch);
                 producer.send(producerRecord_asynch);
                 producer.flush();
                 
             }
             if(running_status == "down")
                 break;
-
-
-            
-			
 		}
-
-
 		//close producer if we ever want to terminate the while loop
 		producer.close();
 		consumer.close();
-
 	}
-
 }
