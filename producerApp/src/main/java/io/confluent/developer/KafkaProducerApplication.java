@@ -99,7 +99,7 @@ public class KafkaProducerApplication  {
 			System.out.printf("\n Password: ");
 			String password = myObj.nextLine();
 
-			//String pass_new = readPassword("");
+			//String pass_new = String.valueOf(System.console().readPassword());
 			//System.out.printf("Password before encryption: " + pass_new);
 
 			GenericRecord login_avroRecord = new GenericData.Record(login_schema);
