@@ -204,6 +204,28 @@ select * from test01;
 Keep publishing data to the **test01** topic from the ksqldb. The data will appear in the **test01** table of the demo database.
 
 
+### 7. User Data Validator App
+
+Get in the userDataValidatorApp folder:
+```bash 
+cd userDataValidatorApp
+```
+
+When you run the userDataValidatorApp for the **first** time:
+```bash 
+gradle wrapper
+```
+
+Compile the userDataValidatorApp: 
+```bash 
+./gradlew shadowJar
+```
+
+Run the userDataValidatorApp: 
+```bash 
+java -jar build/libs/kafka-user-data-validator-application-standalone-0.0.1.jar
+```
+
 ## For logs
 
 ### Kafka Connect
