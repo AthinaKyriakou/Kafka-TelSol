@@ -29,16 +29,28 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 public class KafkaProducerApplication  {
 	
 	public static void main(String[] args) throws Exception{
-		String key = "WRONG";
+		String key = "any";
 		int synch_received = 0, asynch_received = 0;
 		
 		
+		//read file as string from file in producer location.
+		// have all three files
+		
+		String file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/io/confluent/developer/infrastructureup.json";
+		String json = new String(Files.readAllBytes(Paths.get(file)));
+		System.out.println(json);
+		
 
+	
+		//String json_opa = "{\"fiber\": {\"type\": \"Gigabit-capable Passive Optical Network (GPON)\", \"mode\": \"Single Mode Fiber (ITU-T G.652)\", \"downstream\": {\"wavelength (nm)\": 1390, \"bandwidth (Gbps)\": 2.488}, \"upstream\": {\"wavelength (nm)\": 1310, \"bandwidth (Gbps)\": 1.244}, \"split_ratio\": \"1/32\"}, \"cable\": {\"type\": \"HDPE\", \"color\": \"black\", \"outside diameter (mm)\": 40, \"inside diameter (mm)\": 32}, \"OLT\": {\"loc\": [38.043447, 23.801385], \"address\": \"Dionisiou 138, Marousi\"}, \"OND\": {\"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\"}, \"points\": [{\"num\": 1, \"type\": \"Point\", \"loc\": [38.045004, 23.802266], \"address\": \"Dionisiou 126-130, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 2, \"type\": \"Sewer\", \"loc\": [38.046464, 23.80212], \"address\": \"Nikos Kapetanidis Square 2-4, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 3, \"type\": \"Point\", \"loc\": [38.047826, 23.803108], \"address\": \"Dionisiou 112, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 4,\"type\": \"Sewer\", \"loc\": [38.048989, 23.803479], \"address\": \"Dionisiou, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 5, \"type\": \"Point\", \"loc\": [38.050978, 23.803669], \"address\": \"Marathonodromou 29-25, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 6, \"type\": \"OND\", \"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\", \"splitted\": true}, {\"num\": 7, \"type\": \"Point\", \"loc\": [38.052712, 23.803283], \"address\": \"Dim. Gounari 18-29, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 8, \"type\": \"Sewer\", \"loc\": [38.053308, 23.801171], \"address\": \"Dim. Gounari 2-10, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 9, \"type\": \"Point\", \"loc\": [38.051949, 23.80925], \"address\": \"Dim. Ralli 26, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 10, \"type\": \"Sewer\", \"loc\": [38.051649, 23.806984], \"address\": \"Dim. Gounari 61-57, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 11, \"type\": \"Point\", \"loc\": [38.054142, 23.805268], \"address\": \"Dionisiou 40-44, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}]}";
+		//System.out.printf(json_opa);
 
 		Properties props_producer = new Properties();
 		Properties props_consumer = new Properties();
@@ -66,7 +78,7 @@ public class KafkaProducerApplication  {
 
 		String userSchema = "{\"type\":\"record\"," +
 							"\"name\":\"myrecord\"," +
-							"\"fields\":[{\"name\":\"f1\",\"type\":\"string\"}]}";
+							"\"fields\":[{\"name\":\"Submission\",\"type\":\"string\"}]}";
 		Schema.Parser parser = new Schema.Parser();
 		Schema schema = parser.parse(userSchema);
 
@@ -82,11 +94,14 @@ public class KafkaProducerApplication  {
 
 		while(login != "success"){
 			
-			System.out.printf("\n\n Please enter Details:\n Username: ");
+			System.out.printf("\n\nUsername: ");
 			String username = myObj.nextLine();
 			System.out.printf("\n Password: ");
 			String password = myObj.nextLine();
-			
+
+			//String pass_new = String.valueOf(System.console().readPassword());
+			//System.out.printf("Password before encryption: " + pass_new);
+
 			GenericRecord login_avroRecord = new GenericData.Record(login_schema);
 			login_avroRecord.put("Username", username);
 			login_avroRecord.put("Password", password);
@@ -109,14 +124,10 @@ public class KafkaProducerApplication  {
 			}
 		}
 
-		// read json file
-		// convert json to avro
-		//send avro and receive synch
 		
 		GenericRecord avroRecord = new GenericData.Record(schema);
-		avroRecord.put("f1", "myote");
+		avroRecord.put("Submission", json);
 		ProducerRecord<Object, Object> new_record = new ProducerRecord<>("insertion", key, avroRecord);
-		System.out.printf("producing recordddddddddddddddddddddddddddddddddddddddddd \n\n\n");
 		producer.send(new_record);
 		producer.flush();
 
