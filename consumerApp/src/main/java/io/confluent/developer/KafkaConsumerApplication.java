@@ -70,11 +70,11 @@ public class KafkaConsumerApplication {
 		while(true) {
             ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
 			for (ConsumerRecord<String, GenericRecord> record : records) {
-                System.out.printf("\n\n\n\n\noffset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+                //System.out.printf("\n\n\n\n\noffset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
                 producer_key = record.key();
 
                 GenericRecord avroRecord = new GenericData.Record(schema);
-				avroRecord.put("ACK_Message", " Consumed Message from " + producer_key + " with value : " + record.value() + " % Synch %");
+				avroRecord.put("ACK_Message", " Consumed Message from " + producer_key + " % Synch %");
 
                 ProducerRecord<Object, Object> producerRecord_synch =
                     new ProducerRecord<>("ack", producer_key, avroRecord);
@@ -104,7 +104,6 @@ public class KafkaConsumerApplication {
 				}
                 
 				if (status == "Successfully Completed") {
-					System.out.printf("nothing\n\n\n");
 					ProducerRecord<Object, GenericRecord> infrastructure_record =
 						new ProducerRecord<>("infrastructure_data", producer_key, record.value());
 					producer.send(infrastructure_record);
