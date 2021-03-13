@@ -11,8 +11,9 @@ JDBC Sink instructions adapted from this [video](https://www.youtube.com/watch?v
 1. Select your server (i.e. Debian, Fedora, Ubuntu) from [here](https://docs.docker.com/engine/install/#server).
 2. Follow the instructions on sections `SET UP THE REPOSITORY` and `INSTALL DOCKER ENGINE`.
 
+### 2. Install maven for the java applications
 
-### 2. Clone this repo
+### 3. Clone this repo
 
 ```bash
 git clone https://github.com/AthinaKyriakou/kafka-telsol.git
@@ -75,19 +76,14 @@ Get in the producerApp folder:
 cd producerApp
 ```
 
-When you run the producer for the **first** time:
-```bash 
-gradle wrapper
-```
-
 Compile the producerApp: 
 ```bash 
-./gradlew shadowJar
+mvn clean compile package
 ```
 
 Run the producerApp: 
 ```bash 
-java -jar build/libs/kafka-producer-application-standalone-0.0.1.jar
+mvn exec:java -Dexec.mainClass=io.confluent.examples.clients.basicavro.KafkaProducerApplication
 ```
 
 #### b. In a new terminal start ksqldb (to interface with Kafka)
@@ -124,19 +120,14 @@ Get in the consumerApp folder:
 cd consumerApp
 ```
 
-When you run the consumer for the **first** time:
-```bash 
-gradle wrapper
-```
-
 Compile the consumerApp: 
 ```bash 
-./gradlew shadowJar
+mvn clean compile package
 ```
 
-Run the consumerApp: 
+Run the producerApp: 
 ```bash 
-java -jar build/libs/kafka-consumer-application-standalone-0.0.1.jar
+mvn exec:java -Dexec.mainClass=io.confluent.examples.clients.basicavro.KafkaConsumerApplication
 ```
 
 ### 5. Insert data from a topic to MySQL db
