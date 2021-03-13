@@ -1,11 +1,5 @@
 package io.confluent.examples.clients.basicavro;
 
-<<<<<<< HEAD:producerApp/src/main/java/io/confluent/developer/KafkaProducerApplication.java
-
-// write to topic producer_test
-// read from consumer_test
-=======
->>>>>>> 7a271d798dc8a372686e128135d9655731d0ccbc:producerApp/src/main/java/KafkaProducerApplication.java
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
@@ -31,7 +25,6 @@ import java.util.Arrays;
 import java.util.Random;
 
 
-<<<<<<< HEAD:producerApp/src/main/java/io/confluent/developer/KafkaProducerApplication.java
 import java.io.UnsupportedEncodingException;
 import java.security.AlgorithmParameters;
 import java.security.GeneralSecurityException;
@@ -45,6 +38,9 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.KeyGenerator;
+
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 
 //import java.lang.Object;
 
@@ -90,17 +86,16 @@ public class KafkaProducerApplication  {
     private static byte[] base64Decode(String property) throws IOException {
         return Base64.getDecoder().decode(property);
     }	
-	public static void main(String[] args) throws Exception{
+	@SuppressWarnings("InfiniteLoopStatement")
+	public static void main(final String[] args) throws Exception{
 
 		//System.out.printf("\n\n\n MY SPECIAL KEY IS :" + generateKey(192) + "\n\n\n\n");
 		String special_key = "nL0ZAIlgp042s0J/evM47HdVGeqvpBaq";
 		int synch_received = 0, asynch_received = 0;
 		
-=======
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 
-public class KafkaProducerApplication  {
+
+	/*public class KafkaProducerApplication  {
 
 	private static final String TOPIC = "insertion";
 
@@ -110,14 +105,6 @@ public class KafkaProducerApplication  {
 		//dummy producer to check Avro schema implementation
 		System.out.println("Starting dummy producer to check Avro schema implementation");
 		
-        final Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(ProducerConfig.ACKS_CONFIG, "all");
-        props.put(ProducerConfig.RETRIES_CONFIG, 0);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
-
         try (KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(props)) {
 
             for (long i = 0; i < 10; i++) {
@@ -135,30 +122,31 @@ public class KafkaProducerApplication  {
             e.printStackTrace();
         } catch (final InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
-		/*String key = "any";
 		int synch_received = 0, asynch_received = 0;
 		
-		//read file as string from file in producer location.
-		// have all three files
-		
-		String file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/io/confluent/developer/infrastructureup.json";
-		String json = new String(Files.readAllBytes(Paths.get(file)));
-		System.out.println(json);
->>>>>>> 7a271d798dc8a372686e128135d9655731d0ccbc:producerApp/src/main/java/KafkaProducerApplication.java
 	
 		//String json_opa = "{\"fiber\": {\"type\": \"Gigabit-capable Passive Optical Network (GPON)\", \"mode\": \"Single Mode Fiber (ITU-T G.652)\", \"downstream\": {\"wavelength (nm)\": 1390, \"bandwidth (Gbps)\": 2.488}, \"upstream\": {\"wavelength (nm)\": 1310, \"bandwidth (Gbps)\": 1.244}, \"split_ratio\": \"1/32\"}, \"cable\": {\"type\": \"HDPE\", \"color\": \"black\", \"outside diameter (mm)\": 40, \"inside diameter (mm)\": 32}, \"OLT\": {\"loc\": [38.043447, 23.801385], \"address\": \"Dionisiou 138, Marousi\"}, \"OND\": {\"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\"}, \"points\": [{\"num\": 1, \"type\": \"Point\", \"loc\": [38.045004, 23.802266], \"address\": \"Dionisiou 126-130, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 2, \"type\": \"Sewer\", \"loc\": [38.046464, 23.80212], \"address\": \"Nikos Kapetanidis Square 2-4, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 3, \"type\": \"Point\", \"loc\": [38.047826, 23.803108], \"address\": \"Dionisiou 112, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 4,\"type\": \"Sewer\", \"loc\": [38.048989, 23.803479], \"address\": \"Dionisiou, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 5, \"type\": \"Point\", \"loc\": [38.050978, 23.803669], \"address\": \"Marathonodromou 29-25, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 6, \"type\": \"OND\", \"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\", \"splitted\": true}, {\"num\": 7, \"type\": \"Point\", \"loc\": [38.052712, 23.803283], \"address\": \"Dim. Gounari 18-29, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 8, \"type\": \"Sewer\", \"loc\": [38.053308, 23.801171], \"address\": \"Dim. Gounari 2-10, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 9, \"type\": \"Point\", \"loc\": [38.051949, 23.80925], \"address\": \"Dim. Ralli 26, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 10, \"type\": \"Sewer\", \"loc\": [38.051649, 23.806984], \"address\": \"Dim. Gounari 61-57, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 11, \"type\": \"Point\", \"loc\": [38.054142, 23.805268], \"address\": \"Dionisiou 40-44, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}]}";
 		//System.out.printf(json_opa);
 
-		Properties props_producer = new Properties();
-		Properties props_consumer = new Properties();
-		Properties login_props_consumer = new Properties();
+		final Properties props_producer = new Properties();
+		final Properties props_consumer = new Properties();
+		final Properties login_props_consumer = new Properties();
 		props_producer.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		props_producer.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, org.apache.kafka.common.serialization.StringSerializer.class);
 		props_producer.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, io.confluent.kafka.serializers.KafkaAvroSerializer.class);
 		props_producer.put("schema.registry.url", "http://localhost:8081");
 		
+		final Properties props = new Properties();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ProducerConfig.ACKS_CONFIG, "all");
+        props.put(ProducerConfig.RETRIES_CONFIG, 0);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+        
+
 		props_consumer.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		props_consumer.put(ConsumerConfig.GROUP_ID_CONFIG, "group_paroxos");
 		props_consumer.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
@@ -175,6 +163,7 @@ public class KafkaProducerApplication  {
 		
 		
 		KafkaProducer producer = new KafkaProducer(props_producer);
+		// KafkaProducer producer_insertion = new KafkaProducer(props);
 		final Consumer<String, GenericRecord> consumer = new KafkaConsumer<String, GenericRecord>(props_consumer);
 		final Consumer<String, Integer> login_consumer = new KafkaConsumer<String, Integer>(login_props_consumer);
 		
@@ -267,7 +256,8 @@ public class KafkaProducerApplication  {
 		String file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/io/confluent/developer/infrastructureup.json";
 		String json = new String(Files.readAllBytes(Paths.get(file)));
 		System.out.println(json);
-
+////////////// READING JSON FROM FILE AND CREATING SCHEMA
+		// CHANGE producer -- > producer_insertion
 		
 		GenericRecord avroRecord = new GenericData.Record(schema);
 		avroRecord.put("Submission", json);
@@ -321,7 +311,6 @@ public class KafkaProducerApplication  {
 		producer.close();
 		consumer.close();
 
-		*/
 
 	}
 
