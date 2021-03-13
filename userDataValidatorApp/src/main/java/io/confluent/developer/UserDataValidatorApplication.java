@@ -8,7 +8,6 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -16,29 +15,33 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 
-import org.apache.avro.generic.GenericRecord;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Properties;
+import java.util.Base64;
 
 
-import java.io.UnsupportedEncodingException;
 import java.security.AlgorithmParameters;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import java.sql.*;
 
 
 public class UserDataValidatorApplication  {
@@ -76,7 +79,7 @@ public class UserDataValidatorApplication  {
     }
 
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 
 		String special_key = "nL0ZAIlgp042s0J/evM47HdVGeqvpBaq";
 		// The salt (probably) can be stored along with the encrypted data
@@ -108,14 +111,10 @@ public class UserDataValidatorApplication  {
 		
 		consumer.subscribe(Arrays.asList("user_data"));
 		
-		String correct_username = "Dimos";
-		String correct_password = "Panos";
-		int login = 0;
-
-		
 
 		while(true){
 			ConsumerRecords<String, GenericRecord> records = consumer.poll(100);
+			
 			for(ConsumerRecord<String, GenericRecord> record : records) {
 				System.out.printf("reading data: %s", record.value());
 				String username = record.value().get("Username").toString();
@@ -129,15 +128,55 @@ public class UserDataValidatorApplication  {
 				System.out.println("Original password: " + originalPassword);
 				String decryptedPassword = decrypt(originalPassword, en_key);
 				System.out.println("Decrypted password: " + decryptedPassword);
+				
 				///////////////////////////////////////////
+	
+				Connection conn = null;
+				String correct_password = null;
+				int login = 0;
+				
+				try {
+					
+					//create a connection to the database
+					String db_url = "jdbc:mysql://127.0.0.1:3306/demo?autoReconnect=true&useSSL=false";
+					conn = DriverManager.getConnection(db_url, "athina", "athina");
+					System.out.println("Connection to db established!");
 
-				if((correct_username.equals(username)) && (correct_password.equals(decryptedPassword))){
+					//query the db
+					String query = "SELECT `password` FROM providers WHERE `username` = ?";
+					PreparedStatement stmt = conn.prepareStatement(query);
+					stmt.setString(1, username);
+					ResultSet rs = stmt.executeQuery();
+					ResultSetMetaData rsmd = rs.getMetaData();
+
+					while (rs.next()) {
+						correct_password = rs.getString(rsmd.getColumnName(1));
+					}
+					
+					stmt.close();
+
+				} catch(SQLException e) {
+					System.out.println(e.getMessage());
+				} finally {
+					try {
+						if(conn != null)
+							conn.close();
+					} catch(SQLException ex) {
+						System.out.println(ex.getMessage());
+					}
+				}
+
+				if(correct_password.equals(decryptedPassword)){
 					login = 1;
+					System.out.println("Correct password");
 				}
 				else{
 					login = 0;
+					System.out.println("Wrong password");
 				}
+				
 				////////////////////////////////////////////
+				
 				//produce
 				ProducerRecord<String, Integer> login_record = new ProducerRecord<>("validated_user_data", key, login);
 				producer.send(login_record);
@@ -145,7 +184,5 @@ public class UserDataValidatorApplication  {
 
 			}
 		}
-
-		
 	}
 }
