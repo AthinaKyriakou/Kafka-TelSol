@@ -42,7 +42,9 @@ import javax.crypto.KeyGenerator;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 
-//import java.lang.Object;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class KafkaProducerApplication  {
 	
@@ -95,37 +97,35 @@ public class KafkaProducerApplication  {
 		
 
 
-	/*public class KafkaProducerApplication  {
+		/*public class KafkaProducerApplication  {
 
-	private static final String TOPIC = "insertion";
+		private static final String TOPIC = "insertion";
 
-	@SuppressWarnings("InfiniteLoopStatement")
-	public static void main(final String[] args){
+		@SuppressWarnings("InfiniteLoopStatement")
+		public static void main(final String[] args){
 
-		//dummy producer to check Avro schema implementation
-		System.out.println("Starting dummy producer to check Avro schema implementation");
-		
-        try (KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(props)) {
+			//dummy producer to check Avro schema implementation
+			System.out.println("Starting dummy producer to check Avro schema implementation");
+			
+			try (KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(props)) {
 
-            for (long i = 0; i < 10; i++) {
-                final String orderId = "id" + Long.toString(i);
-                final Payment payment = new Payment(orderId, 1000.00d);
-                final ProducerRecord<String, Payment> record = new ProducerRecord<String, Payment>(TOPIC, payment.getId().toString(), payment);
-                producer.send(record);
-                Thread.sleep(1000L);
-            }
+				for (long i = 0; i < 10; i++) {
+					final String orderId = "id" + Long.toString(i);
+					final Payment payment = new Payment(orderId, 1000.00d);
+					final ProducerRecord<String, Payment> record = new ProducerRecord<String, Payment>(TOPIC, payment.getId().toString(), payment);
+					producer.send(record);
+					Thread.sleep(1000L);
+				}
 
-            producer.flush();
-            System.out.printf("Successfully produced 10 messages to a topic called %s%n", TOPIC);
+				producer.flush();
+				System.out.printf("Successfully produced 10 messages to a topic called %s%n", TOPIC);
 
-        } catch (final SerializationException e) {
-            e.printStackTrace();
-        } catch (final InterruptedException e) {
-            e.printStackTrace();
-        }*/
+			} catch (final SerializationException e) {
+				e.printStackTrace();
+			} catch (final InterruptedException e) {
+				e.printStackTrace();
+			}*/
 
-		int synch_received = 0, asynch_received = 0;
-		
 	
 		//String json_opa = "{\"fiber\": {\"type\": \"Gigabit-capable Passive Optical Network (GPON)\", \"mode\": \"Single Mode Fiber (ITU-T G.652)\", \"downstream\": {\"wavelength (nm)\": 1390, \"bandwidth (Gbps)\": 2.488}, \"upstream\": {\"wavelength (nm)\": 1310, \"bandwidth (Gbps)\": 1.244}, \"split_ratio\": \"1/32\"}, \"cable\": {\"type\": \"HDPE\", \"color\": \"black\", \"outside diameter (mm)\": 40, \"inside diameter (mm)\": 32}, \"OLT\": {\"loc\": [38.043447, 23.801385], \"address\": \"Dionisiou 138, Marousi\"}, \"OND\": {\"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\"}, \"points\": [{\"num\": 1, \"type\": \"Point\", \"loc\": [38.045004, 23.802266], \"address\": \"Dionisiou 126-130, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 2, \"type\": \"Sewer\", \"loc\": [38.046464, 23.80212], \"address\": \"Nikos Kapetanidis Square 2-4, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 3, \"type\": \"Point\", \"loc\": [38.047826, 23.803108], \"address\": \"Dionisiou 112, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 4,\"type\": \"Sewer\", \"loc\": [38.048989, 23.803479], \"address\": \"Dionisiou, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 5, \"type\": \"Point\", \"loc\": [38.050978, 23.803669], \"address\": \"Marathonodromou 29-25, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 6, \"type\": \"OND\", \"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\", \"splitted\": true}, {\"num\": 7, \"type\": \"Point\", \"loc\": [38.052712, 23.803283], \"address\": \"Dim. Gounari 18-29, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 8, \"type\": \"Sewer\", \"loc\": [38.053308, 23.801171], \"address\": \"Dim. Gounari 2-10, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 9, \"type\": \"Point\", \"loc\": [38.051949, 23.80925], \"address\": \"Dim. Ralli 26, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 10, \"type\": \"Sewer\", \"loc\": [38.051649, 23.806984], \"address\": \"Dim. Gounari 61-57, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 11, \"type\": \"Point\", \"loc\": [38.054142, 23.805268], \"address\": \"Dionisiou 40-44, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}]}";
 		//System.out.printf(json_opa);
@@ -139,13 +139,13 @@ public class KafkaProducerApplication  {
 		props_producer.put("schema.registry.url", "http://localhost:8081");
 		
 		final Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(ProducerConfig.ACKS_CONFIG, "all");
-        props.put(ProducerConfig.RETRIES_CONFIG, 0);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
-        
+		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		props.put(ProducerConfig.ACKS_CONFIG, "all");
+		props.put(ProducerConfig.RETRIES_CONFIG, 0);
+		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+		
 
 		props_consumer.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		props_consumer.put(ConsumerConfig.GROUP_ID_CONFIG, "group_paroxos");
@@ -187,6 +187,7 @@ public class KafkaProducerApplication  {
 		//login
 		int login = 0, validation_reply = 0;
 		String logged_in_user = "";
+		String key = "";
 
 		while(login != 1){
 			
@@ -196,6 +197,7 @@ public class KafkaProducerApplication  {
 
 			String password = String.valueOf(System.console().readPassword());
 			System.out.println("Password before encryption: " + password + " and username is : " + username);
+			key = username;
 			/////////////////////////////////////////////
 			
 
@@ -244,19 +246,51 @@ public class KafkaProducerApplication  {
 				logged_in_user = username;
 			}
 		}
-		String key = logged_in_user;
-		//please choose data to send
-		infrastructureright.json
-		infrastructureright_fakinou.json
-		infrastructureup.json
+		key = logged_in_user;
 
-		//read file as string from file in producer location.
-		// have all three files
+
+		System.out.println("\n\n\n Please Select Data Info to Send: ");
+		System.out.println("	(1) : infrastructureright.json");
+		System.out.println("	(2) : infrastructureright_fakinou.json");
+		System.out.println("	(3) : infrastructureup.json\n");
 		
-		String file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/io/confluent/developer/infrastructureup.json";
+		//read input
+		String user_input = "", file = "";
+		int pending = 0, number_input = 0;
+
+		while(pending == 0){
+			System.out.println("Option:		");
+			user_input = String.valueOf(System.console().readLine());
+			try {
+				number_input = Integer.parseInt(user_input);
+				System.out.println("Input String converted to: " + number_input + "\n");
+			} catch (NumberFormatException e) {
+				System.out.println("Please Enter a Valid Number");
+			}
+			if ((number_input >= 1) && (number_input <= 3)){
+				pending = 1;
+			}
+			else {
+				System.out.println("Please choose a specific option");
+			}
+		}
+
+		switch(number_input){
+			case 1:
+				file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/infrastructureright.json";
+				break;
+			case 2:
+				file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/infrastructureright_fakinou.json";
+				break;
+			case 3:
+				file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/infrastructureup.json";
+				break;
+
+		}
+		
 		String json = new String(Files.readAllBytes(Paths.get(file)));
 		System.out.println(json);
-////////////// READING JSON FROM FILE AND CREATING SCHEMA
+		////////////// READING JSON FROM FILE AND CREATING SCHEMA
 		// CHANGE producer -- > producer_insertion
 		
 		GenericRecord avroRecord = new GenericData.Record(schema);

@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.18">
-<file name="/home/athina/Desktop/kafka-telsol/consumerApp/src/main/java/ConsumerExample.java">
-</file>
-<file name="/home/athina/Desktop/kafka-telsol/consumerApp/src/main/java/KafkaConsumerApplication.java">
+<file name="C:\Users\Dimosthenis\kafka-telsol\consumerApp\src\main\java\KafkaConsumerApplication.java">
+<error line="78" column="28" severity="error" message="Variable &apos;props_producer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="79" column="28" severity="error" message="Variable &apos;props_consumer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="93" column="31" severity="error" message="Variable &apos;producer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="98" column="24" severity="error" message="Variable &apos;topic&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="101" column="24" severity="error" message="Variable &apos;ackSchema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="106" column="21" severity="error" message="Variable &apos;messages_produced&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="106" column="44" severity="error" message="Variable &apos;synch_received&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="106" column="64" severity="error" message="Variable &apos;asynch_received&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="107" column="31" severity="error" message="Variable &apos;parser&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="108" column="24" severity="error" message="Variable &apos;schema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="114" column="52" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="115" column="30" severity="error" message="Parameter record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="115" column="68" severity="error" message="Variable &apos;record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="120" column="31" severity="error" message="Variable &apos;avroRecord&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="123" column="48" severity="error" message="Variable &apos;producerRecord_synch&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="137" column="23" severity="error" message="Parameter ex should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="137" column="44" severity="error" message="Variable &apos;ex&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="151" column="79" severity="error" message="Variable &apos;infrastructure_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="157" column="31" severity="error" message="Variable &apos;avroRecord_asynch&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="160" column="48" severity="error" message="Variable &apos;producerRecord_asynch&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 </file>
 </checkstyle>
