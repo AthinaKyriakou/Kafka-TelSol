@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 
+
 public class KafkaConsumerApplication {
 	
 	public static void main(String[] args) throws Exception {
@@ -40,7 +41,7 @@ public class KafkaConsumerApplication {
 		props_producer.put("schema.registry.url", "http://localhost:8081");
 		
 		props_consumer.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-		props_consumer.put(ConsumerConfig.GROUP_ID_CONFIG, "group0");
+		props_consumer.put(ConsumerConfig.GROUP_ID_CONFIG, "insertion_group");
 		props_consumer.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 		props_consumer.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroDeserializer");
 		props_consumer.put("schema.registry.url", "http://localhost:8081");
@@ -73,6 +74,7 @@ public class KafkaConsumerApplication {
                 //System.out.printf("\n\n\n\n\noffset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
                 producer_key = record.key();
 
+
                 GenericRecord avroRecord = new GenericData.Record(schema);
 				avroRecord.put("ACK_Message", " Consumed Message from " + producer_key + " % Synch %");
 
@@ -85,10 +87,10 @@ public class KafkaConsumerApplication {
                     running_status = "down";
                     break;
                 }
-                //sleep for 3 seconds
+                //sleep for 10 seconds
                 try
                 {
-                    Thread.sleep(5000);
+                    Thread.sleep(10000);
                 }
                 catch(InterruptedException ex)
                 {

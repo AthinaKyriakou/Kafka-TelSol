@@ -1,5 +1,6 @@
 package io.confluent.developer;
 
+
 // write to topic producer_test
 // read from consumer_test
 import org.apache.avro.Schema;
@@ -27,33 +28,79 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
+import java.io.UnsupportedEncodingException;
+import java.security.AlgorithmParameters;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.KeyGenerator;
+
+//import java.lang.Object;
 
 public class KafkaProducerApplication  {
 	
+	public static String generateKey(int n) throws NoSuchAlgorithmException {
+		KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+		keyGenerator.init(n);
+		SecretKey key = keyGenerator.generateKey();
+		String encodedKey = Base64.getEncoder().encodeToString(key.getEncoded());
+		return encodedKey;
+	}
+
+	private static SecretKeySpec createSecretKey(char[] password, byte[] salt, int iterationCount, int keyLength) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
+        PBEKeySpec keySpec = new PBEKeySpec(password, salt, iterationCount, keyLength);
+        SecretKey keyTmp = keyFactory.generateSecret(keySpec);
+        return new SecretKeySpec(keyTmp.getEncoded(), "AES");
+    }
+
+    private static String encrypt(String property, SecretKeySpec key) throws GeneralSecurityException, UnsupportedEncodingException {
+        Cipher pbeCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        pbeCipher.init(Cipher.ENCRYPT_MODE, key);
+        AlgorithmParameters parameters = pbeCipher.getParameters();
+        IvParameterSpec ivParameterSpec = parameters.getParameterSpec(IvParameterSpec.class);
+        byte[] cryptoText = pbeCipher.doFinal(property.getBytes("UTF-8"));
+        byte[] iv = ivParameterSpec.getIV();
+        return base64Encode(iv) + ":" + base64Encode(cryptoText);
+    }
+
+    private static String base64Encode(byte[] bytes) {
+        return Base64.getEncoder().encodeToString(bytes);
+    }
+
+    private static String decrypt(String string, SecretKeySpec key) throws GeneralSecurityException, IOException {
+        String iv = string.split(":")[0];
+        String property = string.split(":")[1];
+        Cipher pbeCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        pbeCipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(base64Decode(iv)));
+        return new String(pbeCipher.doFinal(base64Decode(property)), "UTF-8");
+    }
+
+    private static byte[] base64Decode(String property) throws IOException {
+        return Base64.getDecoder().decode(property);
+    }	
 	public static void main(String[] args) throws Exception{
-		String key = "any";
+
+		//System.out.printf("\n\n\n MY SPECIAL KEY IS :" + generateKey(192) + "\n\n\n\n");
+		String special_key = "nL0ZAIlgp042s0J/evM47HdVGeqvpBaq";
 		int synch_received = 0, asynch_received = 0;
 		
-		
-		//read file as string from file in producer location.
-		// have all three files
-		
-		String file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/io/confluent/developer/infrastructureup.json";
-		String json = new String(Files.readAllBytes(Paths.get(file)));
-		System.out.println(json);
-		
-
 	
 		//String json_opa = "{\"fiber\": {\"type\": \"Gigabit-capable Passive Optical Network (GPON)\", \"mode\": \"Single Mode Fiber (ITU-T G.652)\", \"downstream\": {\"wavelength (nm)\": 1390, \"bandwidth (Gbps)\": 2.488}, \"upstream\": {\"wavelength (nm)\": 1310, \"bandwidth (Gbps)\": 1.244}, \"split_ratio\": \"1/32\"}, \"cable\": {\"type\": \"HDPE\", \"color\": \"black\", \"outside diameter (mm)\": 40, \"inside diameter (mm)\": 32}, \"OLT\": {\"loc\": [38.043447, 23.801385], \"address\": \"Dionisiou 138, Marousi\"}, \"OND\": {\"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\"}, \"points\": [{\"num\": 1, \"type\": \"Point\", \"loc\": [38.045004, 23.802266], \"address\": \"Dionisiou 126-130, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 2, \"type\": \"Sewer\", \"loc\": [38.046464, 23.80212], \"address\": \"Nikos Kapetanidis Square 2-4, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 3, \"type\": \"Point\", \"loc\": [38.047826, 23.803108], \"address\": \"Dionisiou 112, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 4,\"type\": \"Sewer\", \"loc\": [38.048989, 23.803479], \"address\": \"Dionisiou, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 5, \"type\": \"Point\", \"loc\": [38.050978, 23.803669], \"address\": \"Marathonodromou 29-25, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 6, \"type\": \"OND\", \"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\", \"splitted\": true}, {\"num\": 7, \"type\": \"Point\", \"loc\": [38.052712, 23.803283], \"address\": \"Dim. Gounari 18-29, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 8, \"type\": \"Sewer\", \"loc\": [38.053308, 23.801171], \"address\": \"Dim. Gounari 2-10, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 9, \"type\": \"Point\", \"loc\": [38.051949, 23.80925], \"address\": \"Dim. Ralli 26, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 10, \"type\": \"Sewer\", \"loc\": [38.051649, 23.806984], \"address\": \"Dim. Gounari 61-57, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 11, \"type\": \"Point\", \"loc\": [38.054142, 23.805268], \"address\": \"Dionisiou 40-44, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}]}";
 		//System.out.printf(json_opa);
 
 		Properties props_producer = new Properties();
 		Properties props_consumer = new Properties();
+		Properties login_props_consumer = new Properties();
 		props_producer.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		props_producer.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, org.apache.kafka.common.serialization.StringSerializer.class);
 		props_producer.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, io.confluent.kafka.serializers.KafkaAvroSerializer.class);
@@ -65,11 +112,18 @@ public class KafkaProducerApplication  {
 		props_consumer.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroDeserializer");
 		props_consumer.put("schema.registry.url", "http://localhost:8081");
 		props_consumer.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+		login_props_consumer.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		login_props_consumer.put(ConsumerConfig.GROUP_ID_CONFIG, "group_log");
+		login_props_consumer.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+		login_props_consumer.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroDeserializer");
+		login_props_consumer.put("schema.registry.url", "http://localhost:8081");
+		login_props_consumer.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 		
 		
 		KafkaProducer producer = new KafkaProducer(props_producer);
 		final Consumer<String, GenericRecord> consumer = new KafkaConsumer<String, GenericRecord>(props_consumer);
-		final Consumer<String, String> login_consumer = new KafkaConsumer<String, String>(props_consumer);
+		final Consumer<String, Integer> login_consumer = new KafkaConsumer<String, Integer>(login_props_consumer);
 		
 		String topic = "ack";
 		consumer.subscribe(Arrays.asList(topic));
@@ -89,45 +143,82 @@ public class KafkaProducerApplication  {
 		Schema login_schema = login_parser.parse(loginSchema);
 
 		//login
-		String login = "failed";
-		Scanner myObj = new Scanner(System.in);
+		int login = 0, validation_reply = 0;
+		String logged_in_user = "";
 
-		while(login != "success"){
+		while(login != 1){
 			
-			System.out.printf("\n\nUsername: ");
-			String username = myObj.nextLine();
+			System.out.printf("\n Username: ");
+			String username = String.valueOf(System.console().readLine());
 			System.out.printf("\n Password: ");
-			String password = myObj.nextLine();
 
-			//String pass_new = String.valueOf(System.console().readPassword());
-			//System.out.printf("Password before encryption: " + pass_new);
+			String password = String.valueOf(System.console().readPassword());
+			System.out.println("Password before encryption: " + password + " and username is : " + username);
+			/////////////////////////////////////////////
+			
+
+			// The salt (probably) can be stored along with the encrypted data
+			byte[] salt = new String("12345678").getBytes();
+
+			// Decreasing this speeds down startup time and can be useful during testing, but it also makes it easier for brute force attackers
+			int iterationCount = 40000;
+			// Other values give me java.security.InvalidKeyException: Illegal key size or default parameters
+			int keyLength = 128;
+			SecretKeySpec en_key = createSecretKey(special_key.toCharArray(),
+					salt, iterationCount, keyLength);
+
+			String originalPassword = password;
+			//System.out.println("Original password: " + originalPassword);
+			String encryptedPassword = encrypt(originalPassword, en_key);
+			//System.out.println("Encrypted password: " + encryptedPassword);
+			//String decryptedPassword = decrypt(encryptedPassword, en_key);
+			//System.out.println("Decrypted password: " + decryptedPassword);
+			///////////////////////////////////////////
+
+			System.out.println("Password after encryption: " + encryptedPassword + " and username is : " + username + "\n\n\n\n");
 
 			GenericRecord login_avroRecord = new GenericData.Record(login_schema);
 			login_avroRecord.put("Username", username);
-			login_avroRecord.put("Password", password);
+			login_avroRecord.put("Password", encryptedPassword); // change password to encrypted
 			ProducerRecord<Object, Object> login_record = new ProducerRecord<>("user_data", key, login_avroRecord);
 			producer.send(login_record);
 			producer.flush();
-			int temp = 0;
-			while(temp == 0){
-				temp++;
-				//ConsumerRecords<String, String> records = login_consumer.poll(100);
-				//for(ConsumerRecord<String, String> validation_record : records) {
-				//	if((validation_record.key()).toString().equals(key.toString())){
-				//		login = validation_record.value();
-				//	}
-				//}
+			validation_reply = 0;
+			while(validation_reply == 0){
+				ConsumerRecords<String, Integer> records = login_consumer.poll(100);
+				for(ConsumerRecord<String, Integer> validation_record : records) {
+					if((validation_record.key()).toString().equals(key.toString())){
+						login = validation_record.value();
+						System.out.printf("\n\nVALUES READ" + validation_record.value()+" login : " + login + "\n\n");
+						validation_reply = 1;
+					}
+				}
 			}
-			login = "success";
-			if(login == "failed"){
+			
+			if(login == 0){
 				System.out.printf("Login Failed, Please Check you Username and Password and Retry \n\n\n");
 			}
+			else{
+				logged_in_user = username;
+			}
 		}
+		String key = logged_in_user;
+		//please choose data to send
+		infrastructureright.json
+		infrastructureright_fakinou.json
+		infrastructureup.json
+
+		//read file as string from file in producer location.
+		// have all three files
+		
+		String file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/io/confluent/developer/infrastructureup.json";
+		String json = new String(Files.readAllBytes(Paths.get(file)));
+		System.out.println(json);
 
 		
 		GenericRecord avroRecord = new GenericData.Record(schema);
 		avroRecord.put("Submission", json);
-		ProducerRecord<Object, Object> new_record = new ProducerRecord<>("insertion", key, avroRecord);
+		ProducerRecord<Object, Object> new_record = new ProducerRecord<>("insertion", key, avroRecord); // encryptedPassword = key
 		producer.send(new_record);
 		producer.flush();
 
