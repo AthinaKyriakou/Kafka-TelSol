@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.18">
-<file name="/home/athina/Desktop/examples/producerApp/src/main/java/ProducerExample.java">
-</file>
-<file name="/home/athina/Desktop/examples/producerApp/src/main/java/KafkaProducerApplication.java">
-</file>
-<file name="/home/athina/Desktop/examples/producerApp/src/main/java/ConsumerExample.java">
+<file name="/home/athina/Desktop/kafka-telsol/producerApp/src/main/java/KafkaProducerApplication.java">
 </file>
 </checkstyle>
