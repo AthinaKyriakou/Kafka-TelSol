@@ -45,11 +45,11 @@ import java.util.Collections;
 
 public class KafkaConsumerApplication {
 
-	private static final String TOPIC = "transactions";
+	//private static final String TOPIC = "transactions";
 
     @SuppressWarnings("InfiniteLoopStatement")
 	public static void main(final String[] args){
-
+/*
 		final Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "test-payments");
@@ -73,9 +73,9 @@ public class KafkaConsumerApplication {
                 }
             }
 
-        }
+        }*/
 		
-		/*Properties props_producer = new Properties();
+		Properties props_producer = new Properties();
 		Properties props_consumer = new Properties();
 		props_producer.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		props_producer.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, org.apache.kafka.common.serialization.StringSerializer.class);
@@ -113,7 +113,7 @@ public class KafkaConsumerApplication {
 		while(true) {
             ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
 			for (ConsumerRecord<String, GenericRecord> record : records) {
-                //System.out.printf("\n\n\n\n\noffset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+                System.out.printf("\n\n\n\n\noffset = %d, key = %s, value =:= %s\n", record.offset(), record.key(), record.value());
                 producer_key = record.key();
 
 
@@ -132,7 +132,7 @@ public class KafkaConsumerApplication {
                 //sleep for 10 seconds
                 try
                 {
-                    Thread.sleep(10000);
+                    Thread.sleep(3000);
                 }
                 catch(InterruptedException ex)
                 {
@@ -170,6 +170,6 @@ public class KafkaConsumerApplication {
 		producer.close();
 		consumer.close();
 
-		*/
+		
 	}
 }
