@@ -1,2 +1,0 @@
-io/confluent/developer/KafkaConsumerApplication.java
- io.confluent.developer.KafkaConsumerApplication
