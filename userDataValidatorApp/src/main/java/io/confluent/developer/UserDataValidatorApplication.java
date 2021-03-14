@@ -80,7 +80,7 @@ public class UserDataValidatorApplication  {
 
 
 	public static void main(String[] args) throws Exception {
-
+		
 		String special_key = "nL0ZAIlgp042s0J/evM47HdVGeqvpBaq";
 		// The salt (probably) can be stored along with the encrypted data
 		byte[] salt = new String("12345678").getBytes();
@@ -131,6 +131,9 @@ public class UserDataValidatorApplication  {
 				
 				///////////////////////////////////////////
 	
+				//String username = "Dimos";
+				//String decryptedPassword = "Panos";
+				
 				Connection conn = null;
 				String correct_password = null;
 				int login = 0;

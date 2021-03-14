@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 C:\Users\Dimosthenis\kafka-telsol\consumerApp\src\main\java\KafkaConsumerApplication.java
 C:\Users\Dimosthenis\kafka-telsol\consumerApp\target\generated-sources\io\confluent\examples\clients\basicavro\Payment.java
 C:\Users\Dimosthenis\kafka-telsol\consumerApp\target\generated-sources\io\confluent\examples\clients\basicavro\Point.java
+=======
+/home/athina/Desktop/kafka-telsol/consumerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Point.java
+/home/athina/Desktop/kafka-telsol/consumerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Payment.java
+/home/athina/Desktop/kafka-telsol/consumerApp/src/main/java/KafkaConsumerApplication.java
+>>>>>>> 917940af35ccbafabed37136faac7a6488bf43e5

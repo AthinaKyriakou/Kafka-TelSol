@@ -161,7 +161,7 @@ curl -X PUT http://localhost:8083/connectors/sink-jdbc-mysql-01/config \
      -H "Content-Type: application/json" -d '{
     "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
     "connection.url": "jdbc:mysql://mysql:3306/demo",
-    "topics": "test01",
+    "topics": "insertion_db", "insertion_db_points",
     "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "connection.user": "athina",
     "connection.password": "athina",

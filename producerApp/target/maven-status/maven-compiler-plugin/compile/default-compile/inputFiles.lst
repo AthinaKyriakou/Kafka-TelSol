@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 C:\Users\Dimosthenis\kafka-telsol\producerApp\target\generated-sources\io\confluent\examples\clients\basicavro\Payment.java
 C:\Users\Dimosthenis\kafka-telsol\producerApp\src\main\java\KafkaProducerApplication.java
+=======
+/home/athina/Desktop/kafka-telsol/producerApp/src/main/java/KafkaProducerApplication.java
+/home/athina/Desktop/kafka-telsol/producerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Payment.java
+>>>>>>> 917940af35ccbafabed37136faac7a6488bf43e5
