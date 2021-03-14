@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.18">
-<file name="/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/consumerApp/src/main/java/KafkaConsumerApplication.java">
+<file name="/home/athina/Desktop/kafka-telsol/consumerApp/src/main/java/KafkaConsumerApplication.java">
 <error line="83" column="28" severity="error" message="Variable &apos;props_producer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 <error line="84" column="28" severity="error" message="Variable &apos;props_consumer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 <error line="85" column="28" severity="error" message="Variable &apos;props_db&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>

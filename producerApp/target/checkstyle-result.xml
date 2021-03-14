@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.18">
-<file name="/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/KafkaProducerApplication.java">
+<file name="/home/athina/Desktop/kafka-telsol/producerApp/src/main/java/KafkaProducerApplication.java">
 <error line="51" column="42" severity="error" message="Parameter n should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="51" column="46" severity="error" message="Variable &apos;n&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 <error line="52" column="30" severity="error" message="Variable &apos;keyGenerator&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
@@ -38,40 +38,40 @@
 <error line="88" column="40" severity="error" message="Parameter property should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="88" column="47" severity="error" message="Variable &apos;property&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 <error line="95" column="24" severity="error" message="Variable &apos;special_key&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="165" column="31" severity="error" message="Variable &apos;producer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="170" column="24" severity="error" message="Variable &apos;topic&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="175" column="24" severity="error" message="Variable &apos;userSchema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="178" column="31" severity="error" message="Variable &apos;parser&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="179" column="24" severity="error" message="Variable &apos;schema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="181" column="24" severity="error" message="Variable &apos;loginSchema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="184" column="31" severity="error" message="Variable &apos;login_parser&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="185" column="24" severity="error" message="Variable &apos;login_schema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="195" column="32" severity="error" message="Variable &apos;username&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="198" column="32" severity="error" message="Variable &apos;password&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="205" column="32" severity="error" message="Variable &apos;salt&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="208" column="29" severity="error" message="Variable &apos;iterationCount&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="210" column="29" severity="error" message="Variable &apos;keyLength&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="211" column="39" severity="error" message="Variable &apos;en_key&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="214" column="32" severity="error" message="Variable &apos;originalPassword&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="216" column="32" severity="error" message="Variable &apos;encryptedPassword&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="224" column="39" severity="error" message="Variable &apos;login_avroRecord&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="227" column="56" severity="error" message="Variable &apos;login_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="232" column="66" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="233" column="37" severity="error" message="Parameter validation_record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
-<error line="233" column="69" severity="error" message="Variable &apos;validation_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="267" column="34" severity="error" message="Parameter e should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
-<error line="267" column="56" severity="error" message="Variable &apos;e&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="291" column="24" severity="error" message="Variable &apos;json&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="296" column="31" severity="error" message="Variable &apos;avroRecord&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="298" column="48" severity="error" message="Variable &apos;new_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="305" column="64" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="306" column="30" severity="error" message="Parameter record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
-<error line="306" column="68" severity="error" message="Variable &apos;record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="326" column="31" severity="error" message="Parameter ex should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
-<error line="326" column="52" severity="error" message="Variable &apos;ex&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="331" column="64" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="332" column="30" severity="error" message="Parameter record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
-<error line="332" column="68" severity="error" message="Variable &apos;record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="340" column="24" severity="error" message="Variable &apos;mystring&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="134" column="31" severity="error" message="Variable &apos;producer&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="139" column="24" severity="error" message="Variable &apos;topic&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="144" column="24" severity="error" message="Variable &apos;userSchema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="147" column="31" severity="error" message="Variable &apos;parser&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="148" column="24" severity="error" message="Variable &apos;schema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="150" column="24" severity="error" message="Variable &apos;loginSchema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="153" column="31" severity="error" message="Variable &apos;login_parser&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="154" column="24" severity="error" message="Variable &apos;login_schema&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="164" column="32" severity="error" message="Variable &apos;username&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="167" column="32" severity="error" message="Variable &apos;password&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="174" column="32" severity="error" message="Variable &apos;salt&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="177" column="29" severity="error" message="Variable &apos;iterationCount&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="179" column="29" severity="error" message="Variable &apos;keyLength&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="180" column="39" severity="error" message="Variable &apos;en_key&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="183" column="32" severity="error" message="Variable &apos;originalPassword&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="185" column="32" severity="error" message="Variable &apos;encryptedPassword&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="193" column="39" severity="error" message="Variable &apos;login_avroRecord&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="196" column="56" severity="error" message="Variable &apos;login_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="207" column="66" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="208" column="37" severity="error" message="Parameter validation_record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="208" column="69" severity="error" message="Variable &apos;validation_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="245" column="34" severity="error" message="Parameter e should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="245" column="56" severity="error" message="Variable &apos;e&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="270" column="24" severity="error" message="Variable &apos;json&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="275" column="31" severity="error" message="Variable &apos;avroRecord&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="277" column="48" severity="error" message="Variable &apos;new_record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="284" column="64" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="285" column="30" severity="error" message="Parameter record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="285" column="68" severity="error" message="Variable &apos;record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="305" column="31" severity="error" message="Parameter ex should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="305" column="52" severity="error" message="Variable &apos;ex&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="310" column="64" severity="error" message="Variable &apos;records&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="311" column="30" severity="error" message="Parameter record should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="311" column="68" severity="error" message="Variable &apos;record&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
+<error line="319" column="24" severity="error" message="Variable &apos;mystring&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 </file>
 </checkstyle>

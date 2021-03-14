@@ -94,37 +94,6 @@ public class KafkaProducerApplication  {
 		//System.out.printf("\n\n\n MY SPECIAL KEY IS :" + generateKey(192) + "\n\n\n\n");
 		String special_key = "nL0ZAIlgp042s0J/evM47HdVGeqvpBaq";
 		int synch_received = 0, asynch_received = 0;
-		
-
-
-		/*public class KafkaProducerApplication  {
-
-		private static final String TOPIC = "insertion";
-
-		@SuppressWarnings("InfiniteLoopStatement")
-		public static void main(final String[] args){
-
-			//dummy producer to check Avro schema implementation
-			System.out.println("Starting dummy producer to check Avro schema implementation");
-			
-			try (KafkaProducer<String, Payment> producer = new KafkaProducer<String, Payment>(props)) {
-
-				for (long i = 0; i < 10; i++) {
-					final String orderId = "id" + Long.toString(i);
-					final Payment payment = new Payment(orderId, 1000.00d);
-					final ProducerRecord<String, Payment> record = new ProducerRecord<String, Payment>(TOPIC, payment.getId().toString(), payment);
-					producer.send(record);
-					Thread.sleep(1000L);
-				}
-
-				producer.flush();
-				System.out.printf("Successfully produced 10 messages to a topic called %s%n", TOPIC);
-
-			} catch (final SerializationException e) {
-				e.printStackTrace();
-			} catch (final InterruptedException e) {
-				e.printStackTrace();
-			}*/
 
 	
 		//String json_opa = "{\"fiber\": {\"type\": \"Gigabit-capable Passive Optical Network (GPON)\", \"mode\": \"Single Mode Fiber (ITU-T G.652)\", \"downstream\": {\"wavelength (nm)\": 1390, \"bandwidth (Gbps)\": 2.488}, \"upstream\": {\"wavelength (nm)\": 1310, \"bandwidth (Gbps)\": 1.244}, \"split_ratio\": \"1/32\"}, \"cable\": {\"type\": \"HDPE\", \"color\": \"black\", \"outside diameter (mm)\": 40, \"inside diameter (mm)\": 32}, \"OLT\": {\"loc\": [38.043447, 23.801385], \"address\": \"Dionisiou 138, Marousi\"}, \"OND\": {\"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\"}, \"points\": [{\"num\": 1, \"type\": \"Point\", \"loc\": [38.045004, 23.802266], \"address\": \"Dionisiou 126-130, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 2, \"type\": \"Sewer\", \"loc\": [38.046464, 23.80212], \"address\": \"Nikos Kapetanidis Square 2-4, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 3, \"type\": \"Point\", \"loc\": [38.047826, 23.803108], \"address\": \"Dionisiou 112, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 4,\"type\": \"Sewer\", \"loc\": [38.048989, 23.803479], \"address\": \"Dionisiou, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 5, \"type\": \"Point\", \"loc\": [38.050978, 23.803669], \"address\": \"Marathonodromou 29-25, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 6, \"type\": \"OND\", \"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\", \"splitted\": true}, {\"num\": 7, \"type\": \"Point\", \"loc\": [38.052712, 23.803283], \"address\": \"Dim. Gounari 18-29, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 8, \"type\": \"Sewer\", \"loc\": [38.053308, 23.801171], \"address\": \"Dim. Gounari 2-10, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 9, \"type\": \"Point\", \"loc\": [38.051949, 23.80925], \"address\": \"Dim. Ralli 26, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 10, \"type\": \"Sewer\", \"loc\": [38.051649, 23.806984], \"address\": \"Dim. Gounari 61-57, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 11, \"type\": \"Point\", \"loc\": [38.054142, 23.805268], \"address\": \"Dionisiou 40-44, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}]}";
@@ -227,10 +196,18 @@ public class KafkaProducerApplication  {
 			ProducerRecord<Object, Object> login_record = new ProducerRecord<>("user_data", key, login_avroRecord);
 			producer.send(login_record);
 			producer.flush();
+			
+			System.out.println("hereeeeee1");
+
 			validation_reply = 0;
 			while(validation_reply == 0){
+
+				System.out.println("hereeee2");
+
 				ConsumerRecords<String, Integer> records = login_consumer.poll(100);
 				for(ConsumerRecord<String, Integer> validation_record : records) {
+					
+					System.out.println("hereeee3");
 					if((validation_record.key()).toString().equals(key.toString())){
 						login = validation_record.value();
 						System.out.printf("\n\nVALUES READ" + validation_record.value()+" login : " + login + "\n\n");
@@ -246,13 +223,14 @@ public class KafkaProducerApplication  {
 				logged_in_user = username;
 			}
 		}
+		login_consumer.close();
 		key = logged_in_user;
 
 
 		System.out.println("\n\n\n Please Select Data Info to Send: ");
-		System.out.println("	(1) : infrastructureright.json");
+		System.out.println("	(1) : infrastructureup.json");
 		System.out.println("	(2) : infrastructureright_fakinou.json");
-		System.out.println("	(3) : infrastructureup.json\n");
+		System.out.println("	(3) : infrastructureright.json\n");
 		
 		//read input
 		String user_input = "", file = "";
@@ -277,13 +255,14 @@ public class KafkaProducerApplication  {
 
 		switch(number_input){
 			case 1:
-				file = "/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/infrastructureright.json";
+				file = "./src/main/java/infrastructureup.json";
 				break;
 			case 2:
-				file = "/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/infrastructureright_fakinou.json";
+				file = "./src/main/java/infrastructureright_fakinou.json";
+				key = "WRONG";
 				break;
 			case 3:
-				file = "/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/infrastructureup.json";
+				file = "./src/main/java/infrastructureright.json";
 				break;
 
 		}
