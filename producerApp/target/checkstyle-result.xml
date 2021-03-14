@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.18">
-<file name="/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/KafkaProducerApplication.java">
+<file name="C:\Users\Dimosthenis\kafka-telsol\producerApp\src\main\java\KafkaProducerApplication.java">
 <error line="51" column="42" severity="error" message="Parameter n should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
 <error line="51" column="46" severity="error" message="Variable &apos;n&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
 <error line="52" column="30" severity="error" message="Variable &apos;keyGenerator&apos; should be declared final." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>

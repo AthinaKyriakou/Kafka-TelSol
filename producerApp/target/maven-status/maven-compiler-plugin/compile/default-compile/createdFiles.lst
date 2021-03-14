@@ -1,4 +1,4 @@
-io/confluent/examples/clients/basicavro/Payment$1.class
-io/confluent/examples/clients/basicavro/Payment.class
-io/confluent/examples/clients/basicavro/KafkaProducerApplication.class
-io/confluent/examples/clients/basicavro/Payment$Builder.class
+io\confluent\examples\clients\basicavro\KafkaProducerApplication.class
+io\confluent\examples\clients\basicavro\Payment$1.class
+io\confluent\examples\clients\basicavro\Payment$Builder.class
+io\confluent\examples\clients\basicavro\Payment.class
