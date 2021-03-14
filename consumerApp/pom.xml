@@ -61,6 +61,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
       <version>${kafka.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20140107</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.avro</groupId>
       <artifactId>avro</artifactId>
       <version>${avro.version}</version>
@@ -104,6 +109,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <sourceDirectory>${project.basedir}/src/main/resources/avro/io/confluent/examples/clients/basicavro/</sourceDirectory>
             <includes>
               <include>Payment.avsc</include>
+              <include>Point.avsc</include>
             </includes>
             <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
           </configuration>

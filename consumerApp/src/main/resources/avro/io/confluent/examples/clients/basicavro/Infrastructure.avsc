@@ -1,0 +1,25 @@
+{"namespace": "io.confluent.examples.clients.basicavro",
+ "type": "record",
+ "name": "Payment",
+ "fields": [
+     {"name": "id", "type": "string"},
+     {"name": "type", "type": "string"},
+     {"name": "mode", "type": "string"},
+     {"name": "downstream_wavelength", "type": "string"},
+     {"name": "downstream_bandwidth", "type": "string"},
+     {"name": "upstream_wavelength", "type": "string"},
+     {"name": "upstream_bandwidth", "type": "string"},
+     {"name": "split_ratio", "type": "string"},
+     {"name": "cable_type", "type": "string"},
+     {"name": "cable_color", "type": "string"},
+     {"name": "cable_out_diameter", "type": "string"},
+     {"name": "cable_in_diameter", "type": "string"},
+     {"name": "OLT_latitude", "type": "string"},
+     {"name": "OLT_longitude", "type": "string"},
+     {"name": "OLT_address", "type": "string"},
+     {"name": "Splitter_latitude", "type": "string"},
+     {"name": "Splitter_longitude", "type": "string"},
+     {"name": "Splitter_address", "type": "string"}
+ ]
+}
+

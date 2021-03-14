@@ -277,13 +277,13 @@ public class KafkaProducerApplication  {
 
 		switch(number_input){
 			case 1:
-				file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/infrastructureright.json";
+				file = "/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/infrastructureright.json";
 				break;
 			case 2:
-				file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/infrastructureright_fakinou.json";
+				file = "/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/infrastructureright_fakinou.json";
 				break;
 			case 3:
-				file = "/Users/Dimosthenis/kafka-telsol/producerApp/src/main/java/infrastructureup.json";
+				file = "/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/producerApp/src/main/java/infrastructureup.json";
 				break;
 
 		}

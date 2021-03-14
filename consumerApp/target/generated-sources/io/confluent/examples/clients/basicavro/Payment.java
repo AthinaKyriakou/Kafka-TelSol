@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Payment extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3932533050902953675L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"amount\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = 683599410157492182L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"mode\",\"type\":\"string\"},{\"name\":\"downstream_wavelength\",\"type\":\"string\"},{\"name\":\"downstream_bandwidth\",\"type\":\"string\"},{\"name\":\"upstream_wavelength\",\"type\":\"string\"},{\"name\":\"upstream_bandwidth\",\"type\":\"string\"},{\"name\":\"split_ratio\",\"type\":\"string\"},{\"name\":\"cable_type\",\"type\":\"string\"},{\"name\":\"cable_color\",\"type\":\"string\"},{\"name\":\"cable_out_diameter\",\"type\":\"string\"},{\"name\":\"cable_in_diameter\",\"type\":\"string\"},{\"name\":\"OLT_latitude\",\"type\":\"string\"},{\"name\":\"OLT_longitude\",\"type\":\"string\"},{\"name\":\"OLT_address\",\"type\":\"string\"},{\"name\":\"Splitter_latitude\",\"type\":\"string\"},{\"name\":\"Splitter_longitude\",\"type\":\"string\"},{\"name\":\"Splitter_address\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -72,7 +72,23 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   }
 
   @Deprecated public java.lang.CharSequence id;
-  @Deprecated public double amount;
+  @Deprecated public java.lang.CharSequence type;
+  @Deprecated public java.lang.CharSequence mode;
+  @Deprecated public java.lang.CharSequence downstream_wavelength;
+  @Deprecated public java.lang.CharSequence downstream_bandwidth;
+  @Deprecated public java.lang.CharSequence upstream_wavelength;
+  @Deprecated public java.lang.CharSequence upstream_bandwidth;
+  @Deprecated public java.lang.CharSequence split_ratio;
+  @Deprecated public java.lang.CharSequence cable_type;
+  @Deprecated public java.lang.CharSequence cable_color;
+  @Deprecated public java.lang.CharSequence cable_out_diameter;
+  @Deprecated public java.lang.CharSequence cable_in_diameter;
+  @Deprecated public java.lang.CharSequence OLT_latitude;
+  @Deprecated public java.lang.CharSequence OLT_longitude;
+  @Deprecated public java.lang.CharSequence OLT_address;
+  @Deprecated public java.lang.CharSequence Splitter_latitude;
+  @Deprecated public java.lang.CharSequence Splitter_longitude;
+  @Deprecated public java.lang.CharSequence Splitter_address;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -84,11 +100,43 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   /**
    * All-args constructor.
    * @param id The new value for id
-   * @param amount The new value for amount
+   * @param type The new value for type
+   * @param mode The new value for mode
+   * @param downstream_wavelength The new value for downstream_wavelength
+   * @param downstream_bandwidth The new value for downstream_bandwidth
+   * @param upstream_wavelength The new value for upstream_wavelength
+   * @param upstream_bandwidth The new value for upstream_bandwidth
+   * @param split_ratio The new value for split_ratio
+   * @param cable_type The new value for cable_type
+   * @param cable_color The new value for cable_color
+   * @param cable_out_diameter The new value for cable_out_diameter
+   * @param cable_in_diameter The new value for cable_in_diameter
+   * @param OLT_latitude The new value for OLT_latitude
+   * @param OLT_longitude The new value for OLT_longitude
+   * @param OLT_address The new value for OLT_address
+   * @param Splitter_latitude The new value for Splitter_latitude
+   * @param Splitter_longitude The new value for Splitter_longitude
+   * @param Splitter_address The new value for Splitter_address
    */
-  public Payment(java.lang.CharSequence id, java.lang.Double amount) {
+  public Payment(java.lang.CharSequence id, java.lang.CharSequence type, java.lang.CharSequence mode, java.lang.CharSequence downstream_wavelength, java.lang.CharSequence downstream_bandwidth, java.lang.CharSequence upstream_wavelength, java.lang.CharSequence upstream_bandwidth, java.lang.CharSequence split_ratio, java.lang.CharSequence cable_type, java.lang.CharSequence cable_color, java.lang.CharSequence cable_out_diameter, java.lang.CharSequence cable_in_diameter, java.lang.CharSequence OLT_latitude, java.lang.CharSequence OLT_longitude, java.lang.CharSequence OLT_address, java.lang.CharSequence Splitter_latitude, java.lang.CharSequence Splitter_longitude, java.lang.CharSequence Splitter_address) {
     this.id = id;
-    this.amount = amount;
+    this.type = type;
+    this.mode = mode;
+    this.downstream_wavelength = downstream_wavelength;
+    this.downstream_bandwidth = downstream_bandwidth;
+    this.upstream_wavelength = upstream_wavelength;
+    this.upstream_bandwidth = upstream_bandwidth;
+    this.split_ratio = split_ratio;
+    this.cable_type = cable_type;
+    this.cable_color = cable_color;
+    this.cable_out_diameter = cable_out_diameter;
+    this.cable_in_diameter = cable_in_diameter;
+    this.OLT_latitude = OLT_latitude;
+    this.OLT_longitude = OLT_longitude;
+    this.OLT_address = OLT_address;
+    this.Splitter_latitude = Splitter_latitude;
+    this.Splitter_longitude = Splitter_longitude;
+    this.Splitter_address = Splitter_address;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -97,7 +145,23 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
-    case 1: return amount;
+    case 1: return type;
+    case 2: return mode;
+    case 3: return downstream_wavelength;
+    case 4: return downstream_bandwidth;
+    case 5: return upstream_wavelength;
+    case 6: return upstream_bandwidth;
+    case 7: return split_ratio;
+    case 8: return cable_type;
+    case 9: return cable_color;
+    case 10: return cable_out_diameter;
+    case 11: return cable_in_diameter;
+    case 12: return OLT_latitude;
+    case 13: return OLT_longitude;
+    case 14: return OLT_address;
+    case 15: return Splitter_latitude;
+    case 16: return Splitter_longitude;
+    case 17: return Splitter_address;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -107,7 +171,23 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.CharSequence)value$; break;
-    case 1: amount = (java.lang.Double)value$; break;
+    case 1: type = (java.lang.CharSequence)value$; break;
+    case 2: mode = (java.lang.CharSequence)value$; break;
+    case 3: downstream_wavelength = (java.lang.CharSequence)value$; break;
+    case 4: downstream_bandwidth = (java.lang.CharSequence)value$; break;
+    case 5: upstream_wavelength = (java.lang.CharSequence)value$; break;
+    case 6: upstream_bandwidth = (java.lang.CharSequence)value$; break;
+    case 7: split_ratio = (java.lang.CharSequence)value$; break;
+    case 8: cable_type = (java.lang.CharSequence)value$; break;
+    case 9: cable_color = (java.lang.CharSequence)value$; break;
+    case 10: cable_out_diameter = (java.lang.CharSequence)value$; break;
+    case 11: cable_in_diameter = (java.lang.CharSequence)value$; break;
+    case 12: OLT_latitude = (java.lang.CharSequence)value$; break;
+    case 13: OLT_longitude = (java.lang.CharSequence)value$; break;
+    case 14: OLT_address = (java.lang.CharSequence)value$; break;
+    case 15: Splitter_latitude = (java.lang.CharSequence)value$; break;
+    case 16: Splitter_longitude = (java.lang.CharSequence)value$; break;
+    case 17: Splitter_address = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -130,20 +210,292 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   }
 
   /**
-   * Gets the value of the 'amount' field.
-   * @return The value of the 'amount' field.
+   * Gets the value of the 'type' field.
+   * @return The value of the 'type' field.
    */
-  public double getAmount() {
-    return amount;
+  public java.lang.CharSequence getType() {
+    return type;
   }
 
 
   /**
-   * Sets the value of the 'amount' field.
+   * Sets the value of the 'type' field.
    * @param value the value to set.
    */
-  public void setAmount(double value) {
-    this.amount = value;
+  public void setType(java.lang.CharSequence value) {
+    this.type = value;
+  }
+
+  /**
+   * Gets the value of the 'mode' field.
+   * @return The value of the 'mode' field.
+   */
+  public java.lang.CharSequence getMode() {
+    return mode;
+  }
+
+
+  /**
+   * Sets the value of the 'mode' field.
+   * @param value the value to set.
+   */
+  public void setMode(java.lang.CharSequence value) {
+    this.mode = value;
+  }
+
+  /**
+   * Gets the value of the 'downstream_wavelength' field.
+   * @return The value of the 'downstream_wavelength' field.
+   */
+  public java.lang.CharSequence getDownstreamWavelength() {
+    return downstream_wavelength;
+  }
+
+
+  /**
+   * Sets the value of the 'downstream_wavelength' field.
+   * @param value the value to set.
+   */
+  public void setDownstreamWavelength(java.lang.CharSequence value) {
+    this.downstream_wavelength = value;
+  }
+
+  /**
+   * Gets the value of the 'downstream_bandwidth' field.
+   * @return The value of the 'downstream_bandwidth' field.
+   */
+  public java.lang.CharSequence getDownstreamBandwidth() {
+    return downstream_bandwidth;
+  }
+
+
+  /**
+   * Sets the value of the 'downstream_bandwidth' field.
+   * @param value the value to set.
+   */
+  public void setDownstreamBandwidth(java.lang.CharSequence value) {
+    this.downstream_bandwidth = value;
+  }
+
+  /**
+   * Gets the value of the 'upstream_wavelength' field.
+   * @return The value of the 'upstream_wavelength' field.
+   */
+  public java.lang.CharSequence getUpstreamWavelength() {
+    return upstream_wavelength;
+  }
+
+
+  /**
+   * Sets the value of the 'upstream_wavelength' field.
+   * @param value the value to set.
+   */
+  public void setUpstreamWavelength(java.lang.CharSequence value) {
+    this.upstream_wavelength = value;
+  }
+
+  /**
+   * Gets the value of the 'upstream_bandwidth' field.
+   * @return The value of the 'upstream_bandwidth' field.
+   */
+  public java.lang.CharSequence getUpstreamBandwidth() {
+    return upstream_bandwidth;
+  }
+
+
+  /**
+   * Sets the value of the 'upstream_bandwidth' field.
+   * @param value the value to set.
+   */
+  public void setUpstreamBandwidth(java.lang.CharSequence value) {
+    this.upstream_bandwidth = value;
+  }
+
+  /**
+   * Gets the value of the 'split_ratio' field.
+   * @return The value of the 'split_ratio' field.
+   */
+  public java.lang.CharSequence getSplitRatio() {
+    return split_ratio;
+  }
+
+
+  /**
+   * Sets the value of the 'split_ratio' field.
+   * @param value the value to set.
+   */
+  public void setSplitRatio(java.lang.CharSequence value) {
+    this.split_ratio = value;
+  }
+
+  /**
+   * Gets the value of the 'cable_type' field.
+   * @return The value of the 'cable_type' field.
+   */
+  public java.lang.CharSequence getCableType() {
+    return cable_type;
+  }
+
+
+  /**
+   * Sets the value of the 'cable_type' field.
+   * @param value the value to set.
+   */
+  public void setCableType(java.lang.CharSequence value) {
+    this.cable_type = value;
+  }
+
+  /**
+   * Gets the value of the 'cable_color' field.
+   * @return The value of the 'cable_color' field.
+   */
+  public java.lang.CharSequence getCableColor() {
+    return cable_color;
+  }
+
+
+  /**
+   * Sets the value of the 'cable_color' field.
+   * @param value the value to set.
+   */
+  public void setCableColor(java.lang.CharSequence value) {
+    this.cable_color = value;
+  }
+
+  /**
+   * Gets the value of the 'cable_out_diameter' field.
+   * @return The value of the 'cable_out_diameter' field.
+   */
+  public java.lang.CharSequence getCableOutDiameter() {
+    return cable_out_diameter;
+  }
+
+
+  /**
+   * Sets the value of the 'cable_out_diameter' field.
+   * @param value the value to set.
+   */
+  public void setCableOutDiameter(java.lang.CharSequence value) {
+    this.cable_out_diameter = value;
+  }
+
+  /**
+   * Gets the value of the 'cable_in_diameter' field.
+   * @return The value of the 'cable_in_diameter' field.
+   */
+  public java.lang.CharSequence getCableInDiameter() {
+    return cable_in_diameter;
+  }
+
+
+  /**
+   * Sets the value of the 'cable_in_diameter' field.
+   * @param value the value to set.
+   */
+  public void setCableInDiameter(java.lang.CharSequence value) {
+    this.cable_in_diameter = value;
+  }
+
+  /**
+   * Gets the value of the 'OLT_latitude' field.
+   * @return The value of the 'OLT_latitude' field.
+   */
+  public java.lang.CharSequence getOLTLatitude() {
+    return OLT_latitude;
+  }
+
+
+  /**
+   * Sets the value of the 'OLT_latitude' field.
+   * @param value the value to set.
+   */
+  public void setOLTLatitude(java.lang.CharSequence value) {
+    this.OLT_latitude = value;
+  }
+
+  /**
+   * Gets the value of the 'OLT_longitude' field.
+   * @return The value of the 'OLT_longitude' field.
+   */
+  public java.lang.CharSequence getOLTLongitude() {
+    return OLT_longitude;
+  }
+
+
+  /**
+   * Sets the value of the 'OLT_longitude' field.
+   * @param value the value to set.
+   */
+  public void setOLTLongitude(java.lang.CharSequence value) {
+    this.OLT_longitude = value;
+  }
+
+  /**
+   * Gets the value of the 'OLT_address' field.
+   * @return The value of the 'OLT_address' field.
+   */
+  public java.lang.CharSequence getOLTAddress() {
+    return OLT_address;
+  }
+
+
+  /**
+   * Sets the value of the 'OLT_address' field.
+   * @param value the value to set.
+   */
+  public void setOLTAddress(java.lang.CharSequence value) {
+    this.OLT_address = value;
+  }
+
+  /**
+   * Gets the value of the 'Splitter_latitude' field.
+   * @return The value of the 'Splitter_latitude' field.
+   */
+  public java.lang.CharSequence getSplitterLatitude() {
+    return Splitter_latitude;
+  }
+
+
+  /**
+   * Sets the value of the 'Splitter_latitude' field.
+   * @param value the value to set.
+   */
+  public void setSplitterLatitude(java.lang.CharSequence value) {
+    this.Splitter_latitude = value;
+  }
+
+  /**
+   * Gets the value of the 'Splitter_longitude' field.
+   * @return The value of the 'Splitter_longitude' field.
+   */
+  public java.lang.CharSequence getSplitterLongitude() {
+    return Splitter_longitude;
+  }
+
+
+  /**
+   * Sets the value of the 'Splitter_longitude' field.
+   * @param value the value to set.
+   */
+  public void setSplitterLongitude(java.lang.CharSequence value) {
+    this.Splitter_longitude = value;
+  }
+
+  /**
+   * Gets the value of the 'Splitter_address' field.
+   * @return The value of the 'Splitter_address' field.
+   */
+  public java.lang.CharSequence getSplitterAddress() {
+    return Splitter_address;
+  }
+
+
+  /**
+   * Sets the value of the 'Splitter_address' field.
+   * @param value the value to set.
+   */
+  public void setSplitterAddress(java.lang.CharSequence value) {
+    this.Splitter_address = value;
   }
 
   /**
@@ -187,7 +539,23 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     implements org.apache.avro.data.RecordBuilder<Payment> {
 
     private java.lang.CharSequence id;
-    private double amount;
+    private java.lang.CharSequence type;
+    private java.lang.CharSequence mode;
+    private java.lang.CharSequence downstream_wavelength;
+    private java.lang.CharSequence downstream_bandwidth;
+    private java.lang.CharSequence upstream_wavelength;
+    private java.lang.CharSequence upstream_bandwidth;
+    private java.lang.CharSequence split_ratio;
+    private java.lang.CharSequence cable_type;
+    private java.lang.CharSequence cable_color;
+    private java.lang.CharSequence cable_out_diameter;
+    private java.lang.CharSequence cable_in_diameter;
+    private java.lang.CharSequence OLT_latitude;
+    private java.lang.CharSequence OLT_longitude;
+    private java.lang.CharSequence OLT_address;
+    private java.lang.CharSequence Splitter_latitude;
+    private java.lang.CharSequence Splitter_longitude;
+    private java.lang.CharSequence Splitter_address;
 
     /** Creates a new Builder */
     private Builder() {
@@ -204,9 +572,73 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.amount)) {
-        this.amount = data().deepCopy(fields()[1].schema(), other.amount);
+      if (isValidValue(fields()[1], other.type)) {
+        this.type = data().deepCopy(fields()[1].schema(), other.type);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
+      }
+      if (isValidValue(fields()[2], other.mode)) {
+        this.mode = data().deepCopy(fields()[2].schema(), other.mode);
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
+      }
+      if (isValidValue(fields()[3], other.downstream_wavelength)) {
+        this.downstream_wavelength = data().deepCopy(fields()[3].schema(), other.downstream_wavelength);
+        fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
+      if (isValidValue(fields()[4], other.downstream_bandwidth)) {
+        this.downstream_bandwidth = data().deepCopy(fields()[4].schema(), other.downstream_bandwidth);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
+      }
+      if (isValidValue(fields()[5], other.upstream_wavelength)) {
+        this.upstream_wavelength = data().deepCopy(fields()[5].schema(), other.upstream_wavelength);
+        fieldSetFlags()[5] = other.fieldSetFlags()[5];
+      }
+      if (isValidValue(fields()[6], other.upstream_bandwidth)) {
+        this.upstream_bandwidth = data().deepCopy(fields()[6].schema(), other.upstream_bandwidth);
+        fieldSetFlags()[6] = other.fieldSetFlags()[6];
+      }
+      if (isValidValue(fields()[7], other.split_ratio)) {
+        this.split_ratio = data().deepCopy(fields()[7].schema(), other.split_ratio);
+        fieldSetFlags()[7] = other.fieldSetFlags()[7];
+      }
+      if (isValidValue(fields()[8], other.cable_type)) {
+        this.cable_type = data().deepCopy(fields()[8].schema(), other.cable_type);
+        fieldSetFlags()[8] = other.fieldSetFlags()[8];
+      }
+      if (isValidValue(fields()[9], other.cable_color)) {
+        this.cable_color = data().deepCopy(fields()[9].schema(), other.cable_color);
+        fieldSetFlags()[9] = other.fieldSetFlags()[9];
+      }
+      if (isValidValue(fields()[10], other.cable_out_diameter)) {
+        this.cable_out_diameter = data().deepCopy(fields()[10].schema(), other.cable_out_diameter);
+        fieldSetFlags()[10] = other.fieldSetFlags()[10];
+      }
+      if (isValidValue(fields()[11], other.cable_in_diameter)) {
+        this.cable_in_diameter = data().deepCopy(fields()[11].schema(), other.cable_in_diameter);
+        fieldSetFlags()[11] = other.fieldSetFlags()[11];
+      }
+      if (isValidValue(fields()[12], other.OLT_latitude)) {
+        this.OLT_latitude = data().deepCopy(fields()[12].schema(), other.OLT_latitude);
+        fieldSetFlags()[12] = other.fieldSetFlags()[12];
+      }
+      if (isValidValue(fields()[13], other.OLT_longitude)) {
+        this.OLT_longitude = data().deepCopy(fields()[13].schema(), other.OLT_longitude);
+        fieldSetFlags()[13] = other.fieldSetFlags()[13];
+      }
+      if (isValidValue(fields()[14], other.OLT_address)) {
+        this.OLT_address = data().deepCopy(fields()[14].schema(), other.OLT_address);
+        fieldSetFlags()[14] = other.fieldSetFlags()[14];
+      }
+      if (isValidValue(fields()[15], other.Splitter_latitude)) {
+        this.Splitter_latitude = data().deepCopy(fields()[15].schema(), other.Splitter_latitude);
+        fieldSetFlags()[15] = other.fieldSetFlags()[15];
+      }
+      if (isValidValue(fields()[16], other.Splitter_longitude)) {
+        this.Splitter_longitude = data().deepCopy(fields()[16].schema(), other.Splitter_longitude);
+        fieldSetFlags()[16] = other.fieldSetFlags()[16];
+      }
+      if (isValidValue(fields()[17], other.Splitter_address)) {
+        this.Splitter_address = data().deepCopy(fields()[17].schema(), other.Splitter_address);
+        fieldSetFlags()[17] = other.fieldSetFlags()[17];
       }
     }
 
@@ -220,9 +652,73 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.amount)) {
-        this.amount = data().deepCopy(fields()[1].schema(), other.amount);
+      if (isValidValue(fields()[1], other.type)) {
+        this.type = data().deepCopy(fields()[1].schema(), other.type);
         fieldSetFlags()[1] = true;
+      }
+      if (isValidValue(fields()[2], other.mode)) {
+        this.mode = data().deepCopy(fields()[2].schema(), other.mode);
+        fieldSetFlags()[2] = true;
+      }
+      if (isValidValue(fields()[3], other.downstream_wavelength)) {
+        this.downstream_wavelength = data().deepCopy(fields()[3].schema(), other.downstream_wavelength);
+        fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.downstream_bandwidth)) {
+        this.downstream_bandwidth = data().deepCopy(fields()[4].schema(), other.downstream_bandwidth);
+        fieldSetFlags()[4] = true;
+      }
+      if (isValidValue(fields()[5], other.upstream_wavelength)) {
+        this.upstream_wavelength = data().deepCopy(fields()[5].schema(), other.upstream_wavelength);
+        fieldSetFlags()[5] = true;
+      }
+      if (isValidValue(fields()[6], other.upstream_bandwidth)) {
+        this.upstream_bandwidth = data().deepCopy(fields()[6].schema(), other.upstream_bandwidth);
+        fieldSetFlags()[6] = true;
+      }
+      if (isValidValue(fields()[7], other.split_ratio)) {
+        this.split_ratio = data().deepCopy(fields()[7].schema(), other.split_ratio);
+        fieldSetFlags()[7] = true;
+      }
+      if (isValidValue(fields()[8], other.cable_type)) {
+        this.cable_type = data().deepCopy(fields()[8].schema(), other.cable_type);
+        fieldSetFlags()[8] = true;
+      }
+      if (isValidValue(fields()[9], other.cable_color)) {
+        this.cable_color = data().deepCopy(fields()[9].schema(), other.cable_color);
+        fieldSetFlags()[9] = true;
+      }
+      if (isValidValue(fields()[10], other.cable_out_diameter)) {
+        this.cable_out_diameter = data().deepCopy(fields()[10].schema(), other.cable_out_diameter);
+        fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.cable_in_diameter)) {
+        this.cable_in_diameter = data().deepCopy(fields()[11].schema(), other.cable_in_diameter);
+        fieldSetFlags()[11] = true;
+      }
+      if (isValidValue(fields()[12], other.OLT_latitude)) {
+        this.OLT_latitude = data().deepCopy(fields()[12].schema(), other.OLT_latitude);
+        fieldSetFlags()[12] = true;
+      }
+      if (isValidValue(fields()[13], other.OLT_longitude)) {
+        this.OLT_longitude = data().deepCopy(fields()[13].schema(), other.OLT_longitude);
+        fieldSetFlags()[13] = true;
+      }
+      if (isValidValue(fields()[14], other.OLT_address)) {
+        this.OLT_address = data().deepCopy(fields()[14].schema(), other.OLT_address);
+        fieldSetFlags()[14] = true;
+      }
+      if (isValidValue(fields()[15], other.Splitter_latitude)) {
+        this.Splitter_latitude = data().deepCopy(fields()[15].schema(), other.Splitter_latitude);
+        fieldSetFlags()[15] = true;
+      }
+      if (isValidValue(fields()[16], other.Splitter_longitude)) {
+        this.Splitter_longitude = data().deepCopy(fields()[16].schema(), other.Splitter_longitude);
+        fieldSetFlags()[16] = true;
+      }
+      if (isValidValue(fields()[17], other.Splitter_address)) {
+        this.Splitter_address = data().deepCopy(fields()[17].schema(), other.Splitter_address);
+        fieldSetFlags()[17] = true;
       }
     }
 
@@ -267,41 +763,682 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     /**
-      * Gets the value of the 'amount' field.
+      * Gets the value of the 'type' field.
       * @return The value.
       */
-    public double getAmount() {
-      return amount;
+    public java.lang.CharSequence getType() {
+      return type;
     }
 
 
     /**
-      * Sets the value of the 'amount' field.
-      * @param value The value of 'amount'.
+      * Sets the value of the 'type' field.
+      * @param value The value of 'type'.
       * @return This builder.
       */
-    public io.confluent.examples.clients.basicavro.Payment.Builder setAmount(double value) {
+    public io.confluent.examples.clients.basicavro.Payment.Builder setType(java.lang.CharSequence value) {
       validate(fields()[1], value);
-      this.amount = value;
+      this.type = value;
       fieldSetFlags()[1] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'amount' field has been set.
-      * @return True if the 'amount' field has been set, false otherwise.
+      * Checks whether the 'type' field has been set.
+      * @return True if the 'type' field has been set, false otherwise.
       */
-    public boolean hasAmount() {
+    public boolean hasType() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'amount' field.
+      * Clears the value of the 'type' field.
       * @return This builder.
       */
-    public io.confluent.examples.clients.basicavro.Payment.Builder clearAmount() {
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearType() {
+      type = null;
       fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'mode' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getMode() {
+      return mode;
+    }
+
+
+    /**
+      * Sets the value of the 'mode' field.
+      * @param value The value of 'mode'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setMode(java.lang.CharSequence value) {
+      validate(fields()[2], value);
+      this.mode = value;
+      fieldSetFlags()[2] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'mode' field has been set.
+      * @return True if the 'mode' field has been set, false otherwise.
+      */
+    public boolean hasMode() {
+      return fieldSetFlags()[2];
+    }
+
+
+    /**
+      * Clears the value of the 'mode' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearMode() {
+      mode = null;
+      fieldSetFlags()[2] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'downstream_wavelength' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getDownstreamWavelength() {
+      return downstream_wavelength;
+    }
+
+
+    /**
+      * Sets the value of the 'downstream_wavelength' field.
+      * @param value The value of 'downstream_wavelength'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setDownstreamWavelength(java.lang.CharSequence value) {
+      validate(fields()[3], value);
+      this.downstream_wavelength = value;
+      fieldSetFlags()[3] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'downstream_wavelength' field has been set.
+      * @return True if the 'downstream_wavelength' field has been set, false otherwise.
+      */
+    public boolean hasDownstreamWavelength() {
+      return fieldSetFlags()[3];
+    }
+
+
+    /**
+      * Clears the value of the 'downstream_wavelength' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearDownstreamWavelength() {
+      downstream_wavelength = null;
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'downstream_bandwidth' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getDownstreamBandwidth() {
+      return downstream_bandwidth;
+    }
+
+
+    /**
+      * Sets the value of the 'downstream_bandwidth' field.
+      * @param value The value of 'downstream_bandwidth'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setDownstreamBandwidth(java.lang.CharSequence value) {
+      validate(fields()[4], value);
+      this.downstream_bandwidth = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'downstream_bandwidth' field has been set.
+      * @return True if the 'downstream_bandwidth' field has been set, false otherwise.
+      */
+    public boolean hasDownstreamBandwidth() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'downstream_bandwidth' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearDownstreamBandwidth() {
+      downstream_bandwidth = null;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'upstream_wavelength' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getUpstreamWavelength() {
+      return upstream_wavelength;
+    }
+
+
+    /**
+      * Sets the value of the 'upstream_wavelength' field.
+      * @param value The value of 'upstream_wavelength'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setUpstreamWavelength(java.lang.CharSequence value) {
+      validate(fields()[5], value);
+      this.upstream_wavelength = value;
+      fieldSetFlags()[5] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'upstream_wavelength' field has been set.
+      * @return True if the 'upstream_wavelength' field has been set, false otherwise.
+      */
+    public boolean hasUpstreamWavelength() {
+      return fieldSetFlags()[5];
+    }
+
+
+    /**
+      * Clears the value of the 'upstream_wavelength' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearUpstreamWavelength() {
+      upstream_wavelength = null;
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'upstream_bandwidth' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getUpstreamBandwidth() {
+      return upstream_bandwidth;
+    }
+
+
+    /**
+      * Sets the value of the 'upstream_bandwidth' field.
+      * @param value The value of 'upstream_bandwidth'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setUpstreamBandwidth(java.lang.CharSequence value) {
+      validate(fields()[6], value);
+      this.upstream_bandwidth = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'upstream_bandwidth' field has been set.
+      * @return True if the 'upstream_bandwidth' field has been set, false otherwise.
+      */
+    public boolean hasUpstreamBandwidth() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'upstream_bandwidth' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearUpstreamBandwidth() {
+      upstream_bandwidth = null;
+      fieldSetFlags()[6] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'split_ratio' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getSplitRatio() {
+      return split_ratio;
+    }
+
+
+    /**
+      * Sets the value of the 'split_ratio' field.
+      * @param value The value of 'split_ratio'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setSplitRatio(java.lang.CharSequence value) {
+      validate(fields()[7], value);
+      this.split_ratio = value;
+      fieldSetFlags()[7] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'split_ratio' field has been set.
+      * @return True if the 'split_ratio' field has been set, false otherwise.
+      */
+    public boolean hasSplitRatio() {
+      return fieldSetFlags()[7];
+    }
+
+
+    /**
+      * Clears the value of the 'split_ratio' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearSplitRatio() {
+      split_ratio = null;
+      fieldSetFlags()[7] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'cable_type' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getCableType() {
+      return cable_type;
+    }
+
+
+    /**
+      * Sets the value of the 'cable_type' field.
+      * @param value The value of 'cable_type'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setCableType(java.lang.CharSequence value) {
+      validate(fields()[8], value);
+      this.cable_type = value;
+      fieldSetFlags()[8] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'cable_type' field has been set.
+      * @return True if the 'cable_type' field has been set, false otherwise.
+      */
+    public boolean hasCableType() {
+      return fieldSetFlags()[8];
+    }
+
+
+    /**
+      * Clears the value of the 'cable_type' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearCableType() {
+      cable_type = null;
+      fieldSetFlags()[8] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'cable_color' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getCableColor() {
+      return cable_color;
+    }
+
+
+    /**
+      * Sets the value of the 'cable_color' field.
+      * @param value The value of 'cable_color'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setCableColor(java.lang.CharSequence value) {
+      validate(fields()[9], value);
+      this.cable_color = value;
+      fieldSetFlags()[9] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'cable_color' field has been set.
+      * @return True if the 'cable_color' field has been set, false otherwise.
+      */
+    public boolean hasCableColor() {
+      return fieldSetFlags()[9];
+    }
+
+
+    /**
+      * Clears the value of the 'cable_color' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearCableColor() {
+      cable_color = null;
+      fieldSetFlags()[9] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'cable_out_diameter' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getCableOutDiameter() {
+      return cable_out_diameter;
+    }
+
+
+    /**
+      * Sets the value of the 'cable_out_diameter' field.
+      * @param value The value of 'cable_out_diameter'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setCableOutDiameter(java.lang.CharSequence value) {
+      validate(fields()[10], value);
+      this.cable_out_diameter = value;
+      fieldSetFlags()[10] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'cable_out_diameter' field has been set.
+      * @return True if the 'cable_out_diameter' field has been set, false otherwise.
+      */
+    public boolean hasCableOutDiameter() {
+      return fieldSetFlags()[10];
+    }
+
+
+    /**
+      * Clears the value of the 'cable_out_diameter' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearCableOutDiameter() {
+      cable_out_diameter = null;
+      fieldSetFlags()[10] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'cable_in_diameter' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getCableInDiameter() {
+      return cable_in_diameter;
+    }
+
+
+    /**
+      * Sets the value of the 'cable_in_diameter' field.
+      * @param value The value of 'cable_in_diameter'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setCableInDiameter(java.lang.CharSequence value) {
+      validate(fields()[11], value);
+      this.cable_in_diameter = value;
+      fieldSetFlags()[11] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'cable_in_diameter' field has been set.
+      * @return True if the 'cable_in_diameter' field has been set, false otherwise.
+      */
+    public boolean hasCableInDiameter() {
+      return fieldSetFlags()[11];
+    }
+
+
+    /**
+      * Clears the value of the 'cable_in_diameter' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearCableInDiameter() {
+      cable_in_diameter = null;
+      fieldSetFlags()[11] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'OLT_latitude' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getOLTLatitude() {
+      return OLT_latitude;
+    }
+
+
+    /**
+      * Sets the value of the 'OLT_latitude' field.
+      * @param value The value of 'OLT_latitude'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setOLTLatitude(java.lang.CharSequence value) {
+      validate(fields()[12], value);
+      this.OLT_latitude = value;
+      fieldSetFlags()[12] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'OLT_latitude' field has been set.
+      * @return True if the 'OLT_latitude' field has been set, false otherwise.
+      */
+    public boolean hasOLTLatitude() {
+      return fieldSetFlags()[12];
+    }
+
+
+    /**
+      * Clears the value of the 'OLT_latitude' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearOLTLatitude() {
+      OLT_latitude = null;
+      fieldSetFlags()[12] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'OLT_longitude' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getOLTLongitude() {
+      return OLT_longitude;
+    }
+
+
+    /**
+      * Sets the value of the 'OLT_longitude' field.
+      * @param value The value of 'OLT_longitude'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setOLTLongitude(java.lang.CharSequence value) {
+      validate(fields()[13], value);
+      this.OLT_longitude = value;
+      fieldSetFlags()[13] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'OLT_longitude' field has been set.
+      * @return True if the 'OLT_longitude' field has been set, false otherwise.
+      */
+    public boolean hasOLTLongitude() {
+      return fieldSetFlags()[13];
+    }
+
+
+    /**
+      * Clears the value of the 'OLT_longitude' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearOLTLongitude() {
+      OLT_longitude = null;
+      fieldSetFlags()[13] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'OLT_address' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getOLTAddress() {
+      return OLT_address;
+    }
+
+
+    /**
+      * Sets the value of the 'OLT_address' field.
+      * @param value The value of 'OLT_address'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setOLTAddress(java.lang.CharSequence value) {
+      validate(fields()[14], value);
+      this.OLT_address = value;
+      fieldSetFlags()[14] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'OLT_address' field has been set.
+      * @return True if the 'OLT_address' field has been set, false otherwise.
+      */
+    public boolean hasOLTAddress() {
+      return fieldSetFlags()[14];
+    }
+
+
+    /**
+      * Clears the value of the 'OLT_address' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearOLTAddress() {
+      OLT_address = null;
+      fieldSetFlags()[14] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'Splitter_latitude' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getSplitterLatitude() {
+      return Splitter_latitude;
+    }
+
+
+    /**
+      * Sets the value of the 'Splitter_latitude' field.
+      * @param value The value of 'Splitter_latitude'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setSplitterLatitude(java.lang.CharSequence value) {
+      validate(fields()[15], value);
+      this.Splitter_latitude = value;
+      fieldSetFlags()[15] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'Splitter_latitude' field has been set.
+      * @return True if the 'Splitter_latitude' field has been set, false otherwise.
+      */
+    public boolean hasSplitterLatitude() {
+      return fieldSetFlags()[15];
+    }
+
+
+    /**
+      * Clears the value of the 'Splitter_latitude' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearSplitterLatitude() {
+      Splitter_latitude = null;
+      fieldSetFlags()[15] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'Splitter_longitude' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getSplitterLongitude() {
+      return Splitter_longitude;
+    }
+
+
+    /**
+      * Sets the value of the 'Splitter_longitude' field.
+      * @param value The value of 'Splitter_longitude'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setSplitterLongitude(java.lang.CharSequence value) {
+      validate(fields()[16], value);
+      this.Splitter_longitude = value;
+      fieldSetFlags()[16] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'Splitter_longitude' field has been set.
+      * @return True if the 'Splitter_longitude' field has been set, false otherwise.
+      */
+    public boolean hasSplitterLongitude() {
+      return fieldSetFlags()[16];
+    }
+
+
+    /**
+      * Clears the value of the 'Splitter_longitude' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearSplitterLongitude() {
+      Splitter_longitude = null;
+      fieldSetFlags()[16] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'Splitter_address' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getSplitterAddress() {
+      return Splitter_address;
+    }
+
+
+    /**
+      * Sets the value of the 'Splitter_address' field.
+      * @param value The value of 'Splitter_address'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder setSplitterAddress(java.lang.CharSequence value) {
+      validate(fields()[17], value);
+      this.Splitter_address = value;
+      fieldSetFlags()[17] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'Splitter_address' field has been set.
+      * @return True if the 'Splitter_address' field has been set, false otherwise.
+      */
+    public boolean hasSplitterAddress() {
+      return fieldSetFlags()[17];
+    }
+
+
+    /**
+      * Clears the value of the 'Splitter_address' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Payment.Builder clearSplitterAddress() {
+      Splitter_address = null;
+      fieldSetFlags()[17] = false;
       return this;
     }
 
@@ -311,7 +1448,23 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       try {
         Payment record = new Payment();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.amount = fieldSetFlags()[1] ? this.amount : (java.lang.Double) defaultValue(fields()[1]);
+        record.type = fieldSetFlags()[1] ? this.type : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.mode = fieldSetFlags()[2] ? this.mode : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.downstream_wavelength = fieldSetFlags()[3] ? this.downstream_wavelength : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.downstream_bandwidth = fieldSetFlags()[4] ? this.downstream_bandwidth : (java.lang.CharSequence) defaultValue(fields()[4]);
+        record.upstream_wavelength = fieldSetFlags()[5] ? this.upstream_wavelength : (java.lang.CharSequence) defaultValue(fields()[5]);
+        record.upstream_bandwidth = fieldSetFlags()[6] ? this.upstream_bandwidth : (java.lang.CharSequence) defaultValue(fields()[6]);
+        record.split_ratio = fieldSetFlags()[7] ? this.split_ratio : (java.lang.CharSequence) defaultValue(fields()[7]);
+        record.cable_type = fieldSetFlags()[8] ? this.cable_type : (java.lang.CharSequence) defaultValue(fields()[8]);
+        record.cable_color = fieldSetFlags()[9] ? this.cable_color : (java.lang.CharSequence) defaultValue(fields()[9]);
+        record.cable_out_diameter = fieldSetFlags()[10] ? this.cable_out_diameter : (java.lang.CharSequence) defaultValue(fields()[10]);
+        record.cable_in_diameter = fieldSetFlags()[11] ? this.cable_in_diameter : (java.lang.CharSequence) defaultValue(fields()[11]);
+        record.OLT_latitude = fieldSetFlags()[12] ? this.OLT_latitude : (java.lang.CharSequence) defaultValue(fields()[12]);
+        record.OLT_longitude = fieldSetFlags()[13] ? this.OLT_longitude : (java.lang.CharSequence) defaultValue(fields()[13]);
+        record.OLT_address = fieldSetFlags()[14] ? this.OLT_address : (java.lang.CharSequence) defaultValue(fields()[14]);
+        record.Splitter_latitude = fieldSetFlags()[15] ? this.Splitter_latitude : (java.lang.CharSequence) defaultValue(fields()[15]);
+        record.Splitter_longitude = fieldSetFlags()[16] ? this.Splitter_longitude : (java.lang.CharSequence) defaultValue(fields()[16]);
+        record.Splitter_address = fieldSetFlags()[17] ? this.Splitter_address : (java.lang.CharSequence) defaultValue(fields()[17]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -346,7 +1499,39 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   {
     out.writeString(this.id);
 
-    out.writeDouble(this.amount);
+    out.writeString(this.type);
+
+    out.writeString(this.mode);
+
+    out.writeString(this.downstream_wavelength);
+
+    out.writeString(this.downstream_bandwidth);
+
+    out.writeString(this.upstream_wavelength);
+
+    out.writeString(this.upstream_bandwidth);
+
+    out.writeString(this.split_ratio);
+
+    out.writeString(this.cable_type);
+
+    out.writeString(this.cable_color);
+
+    out.writeString(this.cable_out_diameter);
+
+    out.writeString(this.cable_in_diameter);
+
+    out.writeString(this.OLT_latitude);
+
+    out.writeString(this.OLT_longitude);
+
+    out.writeString(this.OLT_address);
+
+    out.writeString(this.Splitter_latitude);
+
+    out.writeString(this.Splitter_longitude);
+
+    out.writeString(this.Splitter_address);
 
   }
 
@@ -357,17 +1542,113 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     if (fieldOrder == null) {
       this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
 
-      this.amount = in.readDouble();
+      this.type = in.readString(this.type instanceof Utf8 ? (Utf8)this.type : null);
+
+      this.mode = in.readString(this.mode instanceof Utf8 ? (Utf8)this.mode : null);
+
+      this.downstream_wavelength = in.readString(this.downstream_wavelength instanceof Utf8 ? (Utf8)this.downstream_wavelength : null);
+
+      this.downstream_bandwidth = in.readString(this.downstream_bandwidth instanceof Utf8 ? (Utf8)this.downstream_bandwidth : null);
+
+      this.upstream_wavelength = in.readString(this.upstream_wavelength instanceof Utf8 ? (Utf8)this.upstream_wavelength : null);
+
+      this.upstream_bandwidth = in.readString(this.upstream_bandwidth instanceof Utf8 ? (Utf8)this.upstream_bandwidth : null);
+
+      this.split_ratio = in.readString(this.split_ratio instanceof Utf8 ? (Utf8)this.split_ratio : null);
+
+      this.cable_type = in.readString(this.cable_type instanceof Utf8 ? (Utf8)this.cable_type : null);
+
+      this.cable_color = in.readString(this.cable_color instanceof Utf8 ? (Utf8)this.cable_color : null);
+
+      this.cable_out_diameter = in.readString(this.cable_out_diameter instanceof Utf8 ? (Utf8)this.cable_out_diameter : null);
+
+      this.cable_in_diameter = in.readString(this.cable_in_diameter instanceof Utf8 ? (Utf8)this.cable_in_diameter : null);
+
+      this.OLT_latitude = in.readString(this.OLT_latitude instanceof Utf8 ? (Utf8)this.OLT_latitude : null);
+
+      this.OLT_longitude = in.readString(this.OLT_longitude instanceof Utf8 ? (Utf8)this.OLT_longitude : null);
+
+      this.OLT_address = in.readString(this.OLT_address instanceof Utf8 ? (Utf8)this.OLT_address : null);
+
+      this.Splitter_latitude = in.readString(this.Splitter_latitude instanceof Utf8 ? (Utf8)this.Splitter_latitude : null);
+
+      this.Splitter_longitude = in.readString(this.Splitter_longitude instanceof Utf8 ? (Utf8)this.Splitter_longitude : null);
+
+      this.Splitter_address = in.readString(this.Splitter_address instanceof Utf8 ? (Utf8)this.Splitter_address : null);
 
     } else {
-      for (int i = 0; i < 2; i++) {
+      for (int i = 0; i < 18; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
           break;
 
         case 1:
-          this.amount = in.readDouble();
+          this.type = in.readString(this.type instanceof Utf8 ? (Utf8)this.type : null);
+          break;
+
+        case 2:
+          this.mode = in.readString(this.mode instanceof Utf8 ? (Utf8)this.mode : null);
+          break;
+
+        case 3:
+          this.downstream_wavelength = in.readString(this.downstream_wavelength instanceof Utf8 ? (Utf8)this.downstream_wavelength : null);
+          break;
+
+        case 4:
+          this.downstream_bandwidth = in.readString(this.downstream_bandwidth instanceof Utf8 ? (Utf8)this.downstream_bandwidth : null);
+          break;
+
+        case 5:
+          this.upstream_wavelength = in.readString(this.upstream_wavelength instanceof Utf8 ? (Utf8)this.upstream_wavelength : null);
+          break;
+
+        case 6:
+          this.upstream_bandwidth = in.readString(this.upstream_bandwidth instanceof Utf8 ? (Utf8)this.upstream_bandwidth : null);
+          break;
+
+        case 7:
+          this.split_ratio = in.readString(this.split_ratio instanceof Utf8 ? (Utf8)this.split_ratio : null);
+          break;
+
+        case 8:
+          this.cable_type = in.readString(this.cable_type instanceof Utf8 ? (Utf8)this.cable_type : null);
+          break;
+
+        case 9:
+          this.cable_color = in.readString(this.cable_color instanceof Utf8 ? (Utf8)this.cable_color : null);
+          break;
+
+        case 10:
+          this.cable_out_diameter = in.readString(this.cable_out_diameter instanceof Utf8 ? (Utf8)this.cable_out_diameter : null);
+          break;
+
+        case 11:
+          this.cable_in_diameter = in.readString(this.cable_in_diameter instanceof Utf8 ? (Utf8)this.cable_in_diameter : null);
+          break;
+
+        case 12:
+          this.OLT_latitude = in.readString(this.OLT_latitude instanceof Utf8 ? (Utf8)this.OLT_latitude : null);
+          break;
+
+        case 13:
+          this.OLT_longitude = in.readString(this.OLT_longitude instanceof Utf8 ? (Utf8)this.OLT_longitude : null);
+          break;
+
+        case 14:
+          this.OLT_address = in.readString(this.OLT_address instanceof Utf8 ? (Utf8)this.OLT_address : null);
+          break;
+
+        case 15:
+          this.Splitter_latitude = in.readString(this.Splitter_latitude instanceof Utf8 ? (Utf8)this.Splitter_latitude : null);
+          break;
+
+        case 16:
+          this.Splitter_longitude = in.readString(this.Splitter_longitude instanceof Utf8 ? (Utf8)this.Splitter_longitude : null);
+          break;
+
+        case 17:
+          this.Splitter_address = in.readString(this.Splitter_address instanceof Utf8 ? (Utf8)this.Splitter_address : null);
           break;
 
         default:

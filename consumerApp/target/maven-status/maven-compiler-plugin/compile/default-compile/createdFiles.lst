@@ -1,4 +1,7 @@
-io\confluent\examples\clients\basicavro\Payment$1.class
-io\confluent\examples\clients\basicavro\Payment$Builder.class
-io\confluent\examples\clients\basicavro\KafkaConsumerApplication.class
-io\confluent\examples\clients\basicavro\Payment.class
+io/confluent/examples/clients/basicavro/KafkaConsumerApplication.class
+io/confluent/examples/clients/basicavro/Payment.class
+io/confluent/examples/clients/basicavro/Point.class
+io/confluent/examples/clients/basicavro/Point$Builder.class
+io/confluent/examples/clients/basicavro/Payment$1.class
+io/confluent/examples/clients/basicavro/Point$1.class
+io/confluent/examples/clients/basicavro/Payment$Builder.class

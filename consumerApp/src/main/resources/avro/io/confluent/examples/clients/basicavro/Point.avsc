@@ -1,0 +1,20 @@
+{"namespace": "io.confluent.examples.clients.basicavro",
+ "type": "record",
+ "name": "Point",
+ "fields": [
+     {"name": "id", "type": "string"},
+     {"name": "type", "type": "string"},
+     {"name": "location_latitude", "type": "string"},
+     {"name": "location_longitude", "type": "string"},
+     {"name": "address", "type": "string"},
+     {"name": "splitted", "type": "string"},
+     {"name": "ditch_type", "type": "string"},
+     {"name": "ditch_depth", "type": "string"},
+     {"name": "ditch_width", "type": "string"},
+     {"name": "sewer_type", "type": "string"},
+     {"name": "sewer_length", "type": "string"},
+     {"name": "sewer_width", "type": "string"},
+     {"name": "sewer_depth", "type": "string"},
+     {"name": "sewer_cable_depth", "type": "string"}
+ ]
+}
