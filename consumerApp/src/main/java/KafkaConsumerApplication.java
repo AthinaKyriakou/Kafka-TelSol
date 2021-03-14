@@ -269,7 +269,7 @@ public class KafkaConsumerApplication {
 								sewer_width = new String("NULL");
 								sewer_cable_depth = new String("NULL");
 							}
-							Point mypoint = new Point(point_id, point_type, point_latitude, point_longitude, point_address, point_splitted, ditch_type, ditch_depth, ditch_width, sewer_type, sewer_length, sewer_depth, sewer_width, sewer_cable_depth);
+							Point mypoint = new Point(point_id, infrastructure_id, point_type, point_latitude, point_longitude, point_address, point_splitted, ditch_type, ditch_depth, ditch_width, sewer_type, sewer_length, sewer_depth, sewer_width, sewer_cable_depth);
 							ProducerRecord<String, Point> db_record_point = new ProducerRecord<String, Point>(TOPICP, mypoint.getId().toString(), mypoint);
 							producer_db_point.send(db_record_point);
 							Thread.sleep(1000L);

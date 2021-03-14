@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Point extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4379284879096427244L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Point\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"location_latitude\",\"type\":\"string\"},{\"name\":\"location_longitude\",\"type\":\"string\"},{\"name\":\"address\",\"type\":\"string\"},{\"name\":\"splitted\",\"type\":\"string\"},{\"name\":\"ditch_type\",\"type\":\"string\"},{\"name\":\"ditch_depth\",\"type\":\"string\"},{\"name\":\"ditch_width\",\"type\":\"string\"},{\"name\":\"sewer_type\",\"type\":\"string\"},{\"name\":\"sewer_length\",\"type\":\"string\"},{\"name\":\"sewer_width\",\"type\":\"string\"},{\"name\":\"sewer_depth\",\"type\":\"string\"},{\"name\":\"sewer_cable_depth\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = 8828818821556574429L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Point\",\"namespace\":\"io.confluent.examples.clients.basicavro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"infrastructure_id\",\"type\":\"string\"},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"location_latitude\",\"type\":\"string\"},{\"name\":\"location_longitude\",\"type\":\"string\"},{\"name\":\"address\",\"type\":\"string\"},{\"name\":\"splitted\",\"type\":\"string\"},{\"name\":\"ditch_type\",\"type\":\"string\"},{\"name\":\"ditch_depth\",\"type\":\"string\"},{\"name\":\"ditch_width\",\"type\":\"string\"},{\"name\":\"sewer_type\",\"type\":\"string\"},{\"name\":\"sewer_length\",\"type\":\"string\"},{\"name\":\"sewer_width\",\"type\":\"string\"},{\"name\":\"sewer_depth\",\"type\":\"string\"},{\"name\":\"sewer_cable_depth\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -72,6 +72,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   @Deprecated public java.lang.CharSequence id;
+  @Deprecated public java.lang.CharSequence infrastructure_id;
   @Deprecated public java.lang.CharSequence type;
   @Deprecated public java.lang.CharSequence location_latitude;
   @Deprecated public java.lang.CharSequence location_longitude;
@@ -96,6 +97,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
   /**
    * All-args constructor.
    * @param id The new value for id
+   * @param infrastructure_id The new value for infrastructure_id
    * @param type The new value for type
    * @param location_latitude The new value for location_latitude
    * @param location_longitude The new value for location_longitude
@@ -110,8 +112,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
    * @param sewer_depth The new value for sewer_depth
    * @param sewer_cable_depth The new value for sewer_cable_depth
    */
-  public Point(java.lang.CharSequence id, java.lang.CharSequence type, java.lang.CharSequence location_latitude, java.lang.CharSequence location_longitude, java.lang.CharSequence address, java.lang.CharSequence splitted, java.lang.CharSequence ditch_type, java.lang.CharSequence ditch_depth, java.lang.CharSequence ditch_width, java.lang.CharSequence sewer_type, java.lang.CharSequence sewer_length, java.lang.CharSequence sewer_width, java.lang.CharSequence sewer_depth, java.lang.CharSequence sewer_cable_depth) {
+  public Point(java.lang.CharSequence id, java.lang.CharSequence infrastructure_id, java.lang.CharSequence type, java.lang.CharSequence location_latitude, java.lang.CharSequence location_longitude, java.lang.CharSequence address, java.lang.CharSequence splitted, java.lang.CharSequence ditch_type, java.lang.CharSequence ditch_depth, java.lang.CharSequence ditch_width, java.lang.CharSequence sewer_type, java.lang.CharSequence sewer_length, java.lang.CharSequence sewer_width, java.lang.CharSequence sewer_depth, java.lang.CharSequence sewer_cable_depth) {
     this.id = id;
+    this.infrastructure_id = infrastructure_id;
     this.type = type;
     this.location_latitude = location_latitude;
     this.location_longitude = location_longitude;
@@ -133,19 +136,20 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
-    case 1: return type;
-    case 2: return location_latitude;
-    case 3: return location_longitude;
-    case 4: return address;
-    case 5: return splitted;
-    case 6: return ditch_type;
-    case 7: return ditch_depth;
-    case 8: return ditch_width;
-    case 9: return sewer_type;
-    case 10: return sewer_length;
-    case 11: return sewer_width;
-    case 12: return sewer_depth;
-    case 13: return sewer_cable_depth;
+    case 1: return infrastructure_id;
+    case 2: return type;
+    case 3: return location_latitude;
+    case 4: return location_longitude;
+    case 5: return address;
+    case 6: return splitted;
+    case 7: return ditch_type;
+    case 8: return ditch_depth;
+    case 9: return ditch_width;
+    case 10: return sewer_type;
+    case 11: return sewer_length;
+    case 12: return sewer_width;
+    case 13: return sewer_depth;
+    case 14: return sewer_cable_depth;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -155,19 +159,20 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.CharSequence)value$; break;
-    case 1: type = (java.lang.CharSequence)value$; break;
-    case 2: location_latitude = (java.lang.CharSequence)value$; break;
-    case 3: location_longitude = (java.lang.CharSequence)value$; break;
-    case 4: address = (java.lang.CharSequence)value$; break;
-    case 5: splitted = (java.lang.CharSequence)value$; break;
-    case 6: ditch_type = (java.lang.CharSequence)value$; break;
-    case 7: ditch_depth = (java.lang.CharSequence)value$; break;
-    case 8: ditch_width = (java.lang.CharSequence)value$; break;
-    case 9: sewer_type = (java.lang.CharSequence)value$; break;
-    case 10: sewer_length = (java.lang.CharSequence)value$; break;
-    case 11: sewer_width = (java.lang.CharSequence)value$; break;
-    case 12: sewer_depth = (java.lang.CharSequence)value$; break;
-    case 13: sewer_cable_depth = (java.lang.CharSequence)value$; break;
+    case 1: infrastructure_id = (java.lang.CharSequence)value$; break;
+    case 2: type = (java.lang.CharSequence)value$; break;
+    case 3: location_latitude = (java.lang.CharSequence)value$; break;
+    case 4: location_longitude = (java.lang.CharSequence)value$; break;
+    case 5: address = (java.lang.CharSequence)value$; break;
+    case 6: splitted = (java.lang.CharSequence)value$; break;
+    case 7: ditch_type = (java.lang.CharSequence)value$; break;
+    case 8: ditch_depth = (java.lang.CharSequence)value$; break;
+    case 9: ditch_width = (java.lang.CharSequence)value$; break;
+    case 10: sewer_type = (java.lang.CharSequence)value$; break;
+    case 11: sewer_length = (java.lang.CharSequence)value$; break;
+    case 12: sewer_width = (java.lang.CharSequence)value$; break;
+    case 13: sewer_depth = (java.lang.CharSequence)value$; break;
+    case 14: sewer_cable_depth = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -187,6 +192,23 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
    */
   public void setId(java.lang.CharSequence value) {
     this.id = value;
+  }
+
+  /**
+   * Gets the value of the 'infrastructure_id' field.
+   * @return The value of the 'infrastructure_id' field.
+   */
+  public java.lang.CharSequence getInfrastructureId() {
+    return infrastructure_id;
+  }
+
+
+  /**
+   * Sets the value of the 'infrastructure_id' field.
+   * @param value the value to set.
+   */
+  public void setInfrastructureId(java.lang.CharSequence value) {
+    this.infrastructure_id = value;
   }
 
   /**
@@ -451,6 +473,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
     implements org.apache.avro.data.RecordBuilder<Point> {
 
     private java.lang.CharSequence id;
+    private java.lang.CharSequence infrastructure_id;
     private java.lang.CharSequence type;
     private java.lang.CharSequence location_latitude;
     private java.lang.CharSequence location_longitude;
@@ -480,57 +503,61 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.type)) {
-        this.type = data().deepCopy(fields()[1].schema(), other.type);
+      if (isValidValue(fields()[1], other.infrastructure_id)) {
+        this.infrastructure_id = data().deepCopy(fields()[1].schema(), other.infrastructure_id);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.location_latitude)) {
-        this.location_latitude = data().deepCopy(fields()[2].schema(), other.location_latitude);
+      if (isValidValue(fields()[2], other.type)) {
+        this.type = data().deepCopy(fields()[2].schema(), other.type);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.location_longitude)) {
-        this.location_longitude = data().deepCopy(fields()[3].schema(), other.location_longitude);
+      if (isValidValue(fields()[3], other.location_latitude)) {
+        this.location_latitude = data().deepCopy(fields()[3].schema(), other.location_latitude);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
-      if (isValidValue(fields()[4], other.address)) {
-        this.address = data().deepCopy(fields()[4].schema(), other.address);
+      if (isValidValue(fields()[4], other.location_longitude)) {
+        this.location_longitude = data().deepCopy(fields()[4].schema(), other.location_longitude);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (isValidValue(fields()[5], other.splitted)) {
-        this.splitted = data().deepCopy(fields()[5].schema(), other.splitted);
+      if (isValidValue(fields()[5], other.address)) {
+        this.address = data().deepCopy(fields()[5].schema(), other.address);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.ditch_type)) {
-        this.ditch_type = data().deepCopy(fields()[6].schema(), other.ditch_type);
+      if (isValidValue(fields()[6], other.splitted)) {
+        this.splitted = data().deepCopy(fields()[6].schema(), other.splitted);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
-      if (isValidValue(fields()[7], other.ditch_depth)) {
-        this.ditch_depth = data().deepCopy(fields()[7].schema(), other.ditch_depth);
+      if (isValidValue(fields()[7], other.ditch_type)) {
+        this.ditch_type = data().deepCopy(fields()[7].schema(), other.ditch_type);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.ditch_width)) {
-        this.ditch_width = data().deepCopy(fields()[8].schema(), other.ditch_width);
+      if (isValidValue(fields()[8], other.ditch_depth)) {
+        this.ditch_depth = data().deepCopy(fields()[8].schema(), other.ditch_depth);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
       }
-      if (isValidValue(fields()[9], other.sewer_type)) {
-        this.sewer_type = data().deepCopy(fields()[9].schema(), other.sewer_type);
+      if (isValidValue(fields()[9], other.ditch_width)) {
+        this.ditch_width = data().deepCopy(fields()[9].schema(), other.ditch_width);
         fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
-      if (isValidValue(fields()[10], other.sewer_length)) {
-        this.sewer_length = data().deepCopy(fields()[10].schema(), other.sewer_length);
+      if (isValidValue(fields()[10], other.sewer_type)) {
+        this.sewer_type = data().deepCopy(fields()[10].schema(), other.sewer_type);
         fieldSetFlags()[10] = other.fieldSetFlags()[10];
       }
-      if (isValidValue(fields()[11], other.sewer_width)) {
-        this.sewer_width = data().deepCopy(fields()[11].schema(), other.sewer_width);
+      if (isValidValue(fields()[11], other.sewer_length)) {
+        this.sewer_length = data().deepCopy(fields()[11].schema(), other.sewer_length);
         fieldSetFlags()[11] = other.fieldSetFlags()[11];
       }
-      if (isValidValue(fields()[12], other.sewer_depth)) {
-        this.sewer_depth = data().deepCopy(fields()[12].schema(), other.sewer_depth);
+      if (isValidValue(fields()[12], other.sewer_width)) {
+        this.sewer_width = data().deepCopy(fields()[12].schema(), other.sewer_width);
         fieldSetFlags()[12] = other.fieldSetFlags()[12];
       }
-      if (isValidValue(fields()[13], other.sewer_cable_depth)) {
-        this.sewer_cable_depth = data().deepCopy(fields()[13].schema(), other.sewer_cable_depth);
+      if (isValidValue(fields()[13], other.sewer_depth)) {
+        this.sewer_depth = data().deepCopy(fields()[13].schema(), other.sewer_depth);
         fieldSetFlags()[13] = other.fieldSetFlags()[13];
+      }
+      if (isValidValue(fields()[14], other.sewer_cable_depth)) {
+        this.sewer_cable_depth = data().deepCopy(fields()[14].schema(), other.sewer_cable_depth);
+        fieldSetFlags()[14] = other.fieldSetFlags()[14];
       }
     }
 
@@ -544,57 +571,61 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.type)) {
-        this.type = data().deepCopy(fields()[1].schema(), other.type);
+      if (isValidValue(fields()[1], other.infrastructure_id)) {
+        this.infrastructure_id = data().deepCopy(fields()[1].schema(), other.infrastructure_id);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.location_latitude)) {
-        this.location_latitude = data().deepCopy(fields()[2].schema(), other.location_latitude);
+      if (isValidValue(fields()[2], other.type)) {
+        this.type = data().deepCopy(fields()[2].schema(), other.type);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.location_longitude)) {
-        this.location_longitude = data().deepCopy(fields()[3].schema(), other.location_longitude);
+      if (isValidValue(fields()[3], other.location_latitude)) {
+        this.location_latitude = data().deepCopy(fields()[3].schema(), other.location_latitude);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.address)) {
-        this.address = data().deepCopy(fields()[4].schema(), other.address);
+      if (isValidValue(fields()[4], other.location_longitude)) {
+        this.location_longitude = data().deepCopy(fields()[4].schema(), other.location_longitude);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.splitted)) {
-        this.splitted = data().deepCopy(fields()[5].schema(), other.splitted);
+      if (isValidValue(fields()[5], other.address)) {
+        this.address = data().deepCopy(fields()[5].schema(), other.address);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.ditch_type)) {
-        this.ditch_type = data().deepCopy(fields()[6].schema(), other.ditch_type);
+      if (isValidValue(fields()[6], other.splitted)) {
+        this.splitted = data().deepCopy(fields()[6].schema(), other.splitted);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.ditch_depth)) {
-        this.ditch_depth = data().deepCopy(fields()[7].schema(), other.ditch_depth);
+      if (isValidValue(fields()[7], other.ditch_type)) {
+        this.ditch_type = data().deepCopy(fields()[7].schema(), other.ditch_type);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.ditch_width)) {
-        this.ditch_width = data().deepCopy(fields()[8].schema(), other.ditch_width);
+      if (isValidValue(fields()[8], other.ditch_depth)) {
+        this.ditch_depth = data().deepCopy(fields()[8].schema(), other.ditch_depth);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.sewer_type)) {
-        this.sewer_type = data().deepCopy(fields()[9].schema(), other.sewer_type);
+      if (isValidValue(fields()[9], other.ditch_width)) {
+        this.ditch_width = data().deepCopy(fields()[9].schema(), other.ditch_width);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.sewer_length)) {
-        this.sewer_length = data().deepCopy(fields()[10].schema(), other.sewer_length);
+      if (isValidValue(fields()[10], other.sewer_type)) {
+        this.sewer_type = data().deepCopy(fields()[10].schema(), other.sewer_type);
         fieldSetFlags()[10] = true;
       }
-      if (isValidValue(fields()[11], other.sewer_width)) {
-        this.sewer_width = data().deepCopy(fields()[11].schema(), other.sewer_width);
+      if (isValidValue(fields()[11], other.sewer_length)) {
+        this.sewer_length = data().deepCopy(fields()[11].schema(), other.sewer_length);
         fieldSetFlags()[11] = true;
       }
-      if (isValidValue(fields()[12], other.sewer_depth)) {
-        this.sewer_depth = data().deepCopy(fields()[12].schema(), other.sewer_depth);
+      if (isValidValue(fields()[12], other.sewer_width)) {
+        this.sewer_width = data().deepCopy(fields()[12].schema(), other.sewer_width);
         fieldSetFlags()[12] = true;
       }
-      if (isValidValue(fields()[13], other.sewer_cable_depth)) {
-        this.sewer_cable_depth = data().deepCopy(fields()[13].schema(), other.sewer_cable_depth);
+      if (isValidValue(fields()[13], other.sewer_depth)) {
+        this.sewer_depth = data().deepCopy(fields()[13].schema(), other.sewer_depth);
         fieldSetFlags()[13] = true;
+      }
+      if (isValidValue(fields()[14], other.sewer_cable_depth)) {
+        this.sewer_cable_depth = data().deepCopy(fields()[14].schema(), other.sewer_cable_depth);
+        fieldSetFlags()[14] = true;
       }
     }
 
@@ -639,6 +670,46 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
     }
 
     /**
+      * Gets the value of the 'infrastructure_id' field.
+      * @return The value.
+      */
+    public java.lang.CharSequence getInfrastructureId() {
+      return infrastructure_id;
+    }
+
+
+    /**
+      * Sets the value of the 'infrastructure_id' field.
+      * @param value The value of 'infrastructure_id'.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Point.Builder setInfrastructureId(java.lang.CharSequence value) {
+      validate(fields()[1], value);
+      this.infrastructure_id = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'infrastructure_id' field has been set.
+      * @return True if the 'infrastructure_id' field has been set, false otherwise.
+      */
+    public boolean hasInfrastructureId() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'infrastructure_id' field.
+      * @return This builder.
+      */
+    public io.confluent.examples.clients.basicavro.Point.Builder clearInfrastructureId() {
+      infrastructure_id = null;
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'type' field.
       * @return The value.
       */
@@ -653,9 +724,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setType(java.lang.CharSequence value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.type = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -664,7 +735,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'type' field has been set, false otherwise.
       */
     public boolean hasType() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -674,7 +745,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearType() {
       type = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -693,9 +764,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setLocationLatitude(java.lang.CharSequence value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.location_latitude = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -704,7 +775,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'location_latitude' field has been set, false otherwise.
       */
     public boolean hasLocationLatitude() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -714,7 +785,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearLocationLatitude() {
       location_latitude = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -733,9 +804,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setLocationLongitude(java.lang.CharSequence value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.location_longitude = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -744,7 +815,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'location_longitude' field has been set, false otherwise.
       */
     public boolean hasLocationLongitude() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -754,7 +825,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearLocationLongitude() {
       location_longitude = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -773,9 +844,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setAddress(java.lang.CharSequence value) {
-      validate(fields()[4], value);
+      validate(fields()[5], value);
       this.address = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -784,7 +855,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'address' field has been set, false otherwise.
       */
     public boolean hasAddress() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[5];
     }
 
 
@@ -794,7 +865,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearAddress() {
       address = null;
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[5] = false;
       return this;
     }
 
@@ -813,9 +884,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setSplitted(java.lang.CharSequence value) {
-      validate(fields()[5], value);
+      validate(fields()[6], value);
       this.splitted = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[6] = true;
       return this;
     }
 
@@ -824,7 +895,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'splitted' field has been set, false otherwise.
       */
     public boolean hasSplitted() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[6];
     }
 
 
@@ -834,7 +905,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearSplitted() {
       splitted = null;
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -853,9 +924,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setDitchType(java.lang.CharSequence value) {
-      validate(fields()[6], value);
+      validate(fields()[7], value);
       this.ditch_type = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -864,7 +935,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'ditch_type' field has been set, false otherwise.
       */
     public boolean hasDitchType() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[7];
     }
 
 
@@ -874,7 +945,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearDitchType() {
       ditch_type = null;
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[7] = false;
       return this;
     }
 
@@ -893,9 +964,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setDitchDepth(java.lang.CharSequence value) {
-      validate(fields()[7], value);
+      validate(fields()[8], value);
       this.ditch_depth = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
@@ -904,7 +975,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'ditch_depth' field has been set, false otherwise.
       */
     public boolean hasDitchDepth() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[8];
     }
 
 
@@ -914,7 +985,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearDitchDepth() {
       ditch_depth = null;
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[8] = false;
       return this;
     }
 
@@ -933,9 +1004,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setDitchWidth(java.lang.CharSequence value) {
-      validate(fields()[8], value);
+      validate(fields()[9], value);
       this.ditch_width = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[9] = true;
       return this;
     }
 
@@ -944,7 +1015,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'ditch_width' field has been set, false otherwise.
       */
     public boolean hasDitchWidth() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[9];
     }
 
 
@@ -954,7 +1025,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearDitchWidth() {
       ditch_width = null;
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -973,9 +1044,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setSewerType(java.lang.CharSequence value) {
-      validate(fields()[9], value);
+      validate(fields()[10], value);
       this.sewer_type = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[10] = true;
       return this;
     }
 
@@ -984,7 +1055,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'sewer_type' field has been set, false otherwise.
       */
     public boolean hasSewerType() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[10];
     }
 
 
@@ -994,7 +1065,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearSewerType() {
       sewer_type = null;
-      fieldSetFlags()[9] = false;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -1013,9 +1084,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setSewerLength(java.lang.CharSequence value) {
-      validate(fields()[10], value);
+      validate(fields()[11], value);
       this.sewer_length = value;
-      fieldSetFlags()[10] = true;
+      fieldSetFlags()[11] = true;
       return this;
     }
 
@@ -1024,7 +1095,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'sewer_length' field has been set, false otherwise.
       */
     public boolean hasSewerLength() {
-      return fieldSetFlags()[10];
+      return fieldSetFlags()[11];
     }
 
 
@@ -1034,7 +1105,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearSewerLength() {
       sewer_length = null;
-      fieldSetFlags()[10] = false;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -1053,9 +1124,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setSewerWidth(java.lang.CharSequence value) {
-      validate(fields()[11], value);
+      validate(fields()[12], value);
       this.sewer_width = value;
-      fieldSetFlags()[11] = true;
+      fieldSetFlags()[12] = true;
       return this;
     }
 
@@ -1064,7 +1135,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'sewer_width' field has been set, false otherwise.
       */
     public boolean hasSewerWidth() {
-      return fieldSetFlags()[11];
+      return fieldSetFlags()[12];
     }
 
 
@@ -1074,7 +1145,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearSewerWidth() {
       sewer_width = null;
-      fieldSetFlags()[11] = false;
+      fieldSetFlags()[12] = false;
       return this;
     }
 
@@ -1093,9 +1164,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setSewerDepth(java.lang.CharSequence value) {
-      validate(fields()[12], value);
+      validate(fields()[13], value);
       this.sewer_depth = value;
-      fieldSetFlags()[12] = true;
+      fieldSetFlags()[13] = true;
       return this;
     }
 
@@ -1104,7 +1175,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'sewer_depth' field has been set, false otherwise.
       */
     public boolean hasSewerDepth() {
-      return fieldSetFlags()[12];
+      return fieldSetFlags()[13];
     }
 
 
@@ -1114,7 +1185,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearSewerDepth() {
       sewer_depth = null;
-      fieldSetFlags()[12] = false;
+      fieldSetFlags()[13] = false;
       return this;
     }
 
@@ -1133,9 +1204,9 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public io.confluent.examples.clients.basicavro.Point.Builder setSewerCableDepth(java.lang.CharSequence value) {
-      validate(fields()[13], value);
+      validate(fields()[14], value);
       this.sewer_cable_depth = value;
-      fieldSetFlags()[13] = true;
+      fieldSetFlags()[14] = true;
       return this;
     }
 
@@ -1144,7 +1215,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'sewer_cable_depth' field has been set, false otherwise.
       */
     public boolean hasSewerCableDepth() {
-      return fieldSetFlags()[13];
+      return fieldSetFlags()[14];
     }
 
 
@@ -1154,7 +1225,7 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public io.confluent.examples.clients.basicavro.Point.Builder clearSewerCableDepth() {
       sewer_cable_depth = null;
-      fieldSetFlags()[13] = false;
+      fieldSetFlags()[14] = false;
       return this;
     }
 
@@ -1164,19 +1235,20 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       try {
         Point record = new Point();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.type = fieldSetFlags()[1] ? this.type : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.location_latitude = fieldSetFlags()[2] ? this.location_latitude : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.location_longitude = fieldSetFlags()[3] ? this.location_longitude : (java.lang.CharSequence) defaultValue(fields()[3]);
-        record.address = fieldSetFlags()[4] ? this.address : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.splitted = fieldSetFlags()[5] ? this.splitted : (java.lang.CharSequence) defaultValue(fields()[5]);
-        record.ditch_type = fieldSetFlags()[6] ? this.ditch_type : (java.lang.CharSequence) defaultValue(fields()[6]);
-        record.ditch_depth = fieldSetFlags()[7] ? this.ditch_depth : (java.lang.CharSequence) defaultValue(fields()[7]);
-        record.ditch_width = fieldSetFlags()[8] ? this.ditch_width : (java.lang.CharSequence) defaultValue(fields()[8]);
-        record.sewer_type = fieldSetFlags()[9] ? this.sewer_type : (java.lang.CharSequence) defaultValue(fields()[9]);
-        record.sewer_length = fieldSetFlags()[10] ? this.sewer_length : (java.lang.CharSequence) defaultValue(fields()[10]);
-        record.sewer_width = fieldSetFlags()[11] ? this.sewer_width : (java.lang.CharSequence) defaultValue(fields()[11]);
-        record.sewer_depth = fieldSetFlags()[12] ? this.sewer_depth : (java.lang.CharSequence) defaultValue(fields()[12]);
-        record.sewer_cable_depth = fieldSetFlags()[13] ? this.sewer_cable_depth : (java.lang.CharSequence) defaultValue(fields()[13]);
+        record.infrastructure_id = fieldSetFlags()[1] ? this.infrastructure_id : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.type = fieldSetFlags()[2] ? this.type : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.location_latitude = fieldSetFlags()[3] ? this.location_latitude : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.location_longitude = fieldSetFlags()[4] ? this.location_longitude : (java.lang.CharSequence) defaultValue(fields()[4]);
+        record.address = fieldSetFlags()[5] ? this.address : (java.lang.CharSequence) defaultValue(fields()[5]);
+        record.splitted = fieldSetFlags()[6] ? this.splitted : (java.lang.CharSequence) defaultValue(fields()[6]);
+        record.ditch_type = fieldSetFlags()[7] ? this.ditch_type : (java.lang.CharSequence) defaultValue(fields()[7]);
+        record.ditch_depth = fieldSetFlags()[8] ? this.ditch_depth : (java.lang.CharSequence) defaultValue(fields()[8]);
+        record.ditch_width = fieldSetFlags()[9] ? this.ditch_width : (java.lang.CharSequence) defaultValue(fields()[9]);
+        record.sewer_type = fieldSetFlags()[10] ? this.sewer_type : (java.lang.CharSequence) defaultValue(fields()[10]);
+        record.sewer_length = fieldSetFlags()[11] ? this.sewer_length : (java.lang.CharSequence) defaultValue(fields()[11]);
+        record.sewer_width = fieldSetFlags()[12] ? this.sewer_width : (java.lang.CharSequence) defaultValue(fields()[12]);
+        record.sewer_depth = fieldSetFlags()[13] ? this.sewer_depth : (java.lang.CharSequence) defaultValue(fields()[13]);
+        record.sewer_cable_depth = fieldSetFlags()[14] ? this.sewer_cable_depth : (java.lang.CharSequence) defaultValue(fields()[14]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -1210,6 +1282,8 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
     throws java.io.IOException
   {
     out.writeString(this.id);
+
+    out.writeString(this.infrastructure_id);
 
     out.writeString(this.type);
 
@@ -1246,6 +1320,8 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
     if (fieldOrder == null) {
       this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
 
+      this.infrastructure_id = in.readString(this.infrastructure_id instanceof Utf8 ? (Utf8)this.infrastructure_id : null);
+
       this.type = in.readString(this.type instanceof Utf8 ? (Utf8)this.type : null);
 
       this.location_latitude = in.readString(this.location_latitude instanceof Utf8 ? (Utf8)this.location_latitude : null);
@@ -1273,61 +1349,65 @@ public class Point extends org.apache.avro.specific.SpecificRecordBase implement
       this.sewer_cable_depth = in.readString(this.sewer_cable_depth instanceof Utf8 ? (Utf8)this.sewer_cable_depth : null);
 
     } else {
-      for (int i = 0; i < 14; i++) {
+      for (int i = 0; i < 15; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
           break;
 
         case 1:
-          this.type = in.readString(this.type instanceof Utf8 ? (Utf8)this.type : null);
+          this.infrastructure_id = in.readString(this.infrastructure_id instanceof Utf8 ? (Utf8)this.infrastructure_id : null);
           break;
 
         case 2:
-          this.location_latitude = in.readString(this.location_latitude instanceof Utf8 ? (Utf8)this.location_latitude : null);
+          this.type = in.readString(this.type instanceof Utf8 ? (Utf8)this.type : null);
           break;
 
         case 3:
-          this.location_longitude = in.readString(this.location_longitude instanceof Utf8 ? (Utf8)this.location_longitude : null);
+          this.location_latitude = in.readString(this.location_latitude instanceof Utf8 ? (Utf8)this.location_latitude : null);
           break;
 
         case 4:
-          this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
+          this.location_longitude = in.readString(this.location_longitude instanceof Utf8 ? (Utf8)this.location_longitude : null);
           break;
 
         case 5:
-          this.splitted = in.readString(this.splitted instanceof Utf8 ? (Utf8)this.splitted : null);
+          this.address = in.readString(this.address instanceof Utf8 ? (Utf8)this.address : null);
           break;
 
         case 6:
-          this.ditch_type = in.readString(this.ditch_type instanceof Utf8 ? (Utf8)this.ditch_type : null);
+          this.splitted = in.readString(this.splitted instanceof Utf8 ? (Utf8)this.splitted : null);
           break;
 
         case 7:
-          this.ditch_depth = in.readString(this.ditch_depth instanceof Utf8 ? (Utf8)this.ditch_depth : null);
+          this.ditch_type = in.readString(this.ditch_type instanceof Utf8 ? (Utf8)this.ditch_type : null);
           break;
 
         case 8:
-          this.ditch_width = in.readString(this.ditch_width instanceof Utf8 ? (Utf8)this.ditch_width : null);
+          this.ditch_depth = in.readString(this.ditch_depth instanceof Utf8 ? (Utf8)this.ditch_depth : null);
           break;
 
         case 9:
-          this.sewer_type = in.readString(this.sewer_type instanceof Utf8 ? (Utf8)this.sewer_type : null);
+          this.ditch_width = in.readString(this.ditch_width instanceof Utf8 ? (Utf8)this.ditch_width : null);
           break;
 
         case 10:
-          this.sewer_length = in.readString(this.sewer_length instanceof Utf8 ? (Utf8)this.sewer_length : null);
+          this.sewer_type = in.readString(this.sewer_type instanceof Utf8 ? (Utf8)this.sewer_type : null);
           break;
 
         case 11:
-          this.sewer_width = in.readString(this.sewer_width instanceof Utf8 ? (Utf8)this.sewer_width : null);
+          this.sewer_length = in.readString(this.sewer_length instanceof Utf8 ? (Utf8)this.sewer_length : null);
           break;
 
         case 12:
-          this.sewer_depth = in.readString(this.sewer_depth instanceof Utf8 ? (Utf8)this.sewer_depth : null);
+          this.sewer_width = in.readString(this.sewer_width instanceof Utf8 ? (Utf8)this.sewer_width : null);
           break;
 
         case 13:
+          this.sewer_depth = in.readString(this.sewer_depth instanceof Utf8 ? (Utf8)this.sewer_depth : null);
+          break;
+
+        case 14:
           this.sewer_cable_depth = in.readString(this.sewer_cable_depth instanceof Utf8 ? (Utf8)this.sewer_cable_depth : null);
           break;
 

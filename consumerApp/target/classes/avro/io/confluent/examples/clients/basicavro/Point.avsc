@@ -3,6 +3,7 @@
  "name": "Point",
  "fields": [
      {"name": "id", "type": "string"},
+     {"name": "infrastructure_id", "type": "string"},
      {"name": "type", "type": "string"},
      {"name": "location_latitude", "type": "string"},
      {"name": "location_longitude", "type": "string"},
