@@ -93,7 +93,6 @@ public class KafkaProducerApplication  {
 
 		//System.out.printf("\n\n\n MY SPECIAL KEY IS :" + generateKey(192) + "\n\n\n\n");
 		String special_key = "nL0ZAIlgp042s0J/evM47HdVGeqvpBaq";
-		int synch_received = 0, asynch_received = 0;
 
 	
 		//String json_opa = "{\"fiber\": {\"type\": \"Gigabit-capable Passive Optical Network (GPON)\", \"mode\": \"Single Mode Fiber (ITU-T G.652)\", \"downstream\": {\"wavelength (nm)\": 1390, \"bandwidth (Gbps)\": 2.488}, \"upstream\": {\"wavelength (nm)\": 1310, \"bandwidth (Gbps)\": 1.244}, \"split_ratio\": \"1/32\"}, \"cable\": {\"type\": \"HDPE\", \"color\": \"black\", \"outside diameter (mm)\": 40, \"inside diameter (mm)\": 32}, \"OLT\": {\"loc\": [38.043447, 23.801385], \"address\": \"Dionisiou 138, Marousi\"}, \"OND\": {\"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\"}, \"points\": [{\"num\": 1, \"type\": \"Point\", \"loc\": [38.045004, 23.802266], \"address\": \"Dionisiou 126-130, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 2, \"type\": \"Sewer\", \"loc\": [38.046464, 23.80212], \"address\": \"Nikos Kapetanidis Square 2-4, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 3, \"type\": \"Point\", \"loc\": [38.047826, 23.803108], \"address\": \"Dionisiou 112, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 4,\"type\": \"Sewer\", \"loc\": [38.048989, 23.803479], \"address\": \"Dionisiou, Marousi\", \"splitted\": false, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 5, \"type\": \"Point\", \"loc\": [38.050978, 23.803669], \"address\": \"Marathonodromou 29-25, Marousi\", \"splitted\": false, \"ditch\": {\"type\": \"X1\", \"depth (mm)\": 400, \"width (mm)\": 120}}, {\"num\": 6, \"type\": \"OND\", \"loc\": [38.052209, 23.804491], \"address\": \"Dionisiou 71, Marousi\", \"splitted\": true}, {\"num\": 7, \"type\": \"Point\", \"loc\": [38.052712, 23.803283], \"address\": \"Dim. Gounari 18-29, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 8, \"type\": \"Sewer\", \"loc\": [38.053308, 23.801171], \"address\": \"Dim. Gounari 2-10, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 9, \"type\": \"Point\", \"loc\": [38.051949, 23.80925], \"address\": \"Dim. Ralli 26, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 10, \"type\": \"Sewer\", \"loc\": [38.051649, 23.806984], \"address\": \"Dim. Gounari 61-57, Marousi\", \"splitted\": true, \"sewer:\": {\"type\": \"Phi2\", \"length (mm)\": 600, \"width (mm)\": 600, \"depth (mm)\": 650, \"cable depth (mm)\": 250}, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}, {\"num\": 11, \"type\": \"Point\", \"loc\": [38.054142, 23.805268], \"address\": \"Dionisiou 40-44, Marousi\", \"splitted\": true, \"ditch\": {\"type\": \"X2\", \"depth (mm)\": 220, \"width (mm)\": 50}}]}";
@@ -224,100 +223,115 @@ public class KafkaProducerApplication  {
 			}
 		}
 		login_consumer.close();
-		key = logged_in_user;
+
+		int synch_received = 0, asynch_received = 0, retry = 0; 
+
+		while( retry == 0){
+			synch_received = 0;
+			asynch_received = 0;
+
+			key = logged_in_user;
 
 
-		System.out.println("\n\n\n Please Select Data Info to Send: ");
-		System.out.println("	(1) : infrastructureup.json");
-		System.out.println("	(2) : infrastructureright_fakinou.json");
-		System.out.println("	(3) : infrastructureright.json\n");
-		
-		//read input
-		String user_input = "", file = "";
-		int pending = 0, number_input = 0;
+			System.out.println("\n\n\n Please Select Data Info to Send: ");
+			System.out.println("	(1) : infrastructureup.json");
+			System.out.println("	(2) : infrastructureright_fakinou.json");
+			System.out.println("	(3) : infrastructureright.json\n");
+			
+			//read input
+			String user_input = "", file = "";
+			int pending = 0, number_input = 0;
 
-		while(pending == 0){
-			System.out.println("Option:		");
-			user_input = String.valueOf(System.console().readLine());
-			try {
-				number_input = Integer.parseInt(user_input);
-				System.out.println("Input String converted to: " + number_input + "\n");
-			} catch (NumberFormatException e) {
-				System.out.println("Please Enter a Valid Number");
-			}
-			if ((number_input >= 1) && (number_input <= 3)){
-				pending = 1;
-			}
-			else {
-				System.out.println("Please choose a specific option");
-			}
-		}
-
-		switch(number_input){
-			case 1:
-				file = "./src/main/java/infrastructureup.json";
-				break;
-			case 2:
-				file = "./src/main/java/infrastructureright_fakinou.json";
-				key = "WRONG";
-				break;
-			case 3:
-				file = "./src/main/java/infrastructureright.json";
-				break;
-
-		}
-		
-		String json = new String(Files.readAllBytes(Paths.get(file)));
-		System.out.println(json);
-		////////////// READING JSON FROM FILE AND CREATING SCHEMA
-		// CHANGE producer -- > producer_insertion
-		
-		GenericRecord avroRecord = new GenericData.Record(schema);
-		avroRecord.put("Submission", json);
-		ProducerRecord<Object, Object> new_record = new ProducerRecord<>("insertion", key, avroRecord); // encryptedPassword = key
-		producer.send(new_record);
-		producer.flush();
-
-
-		//read until you have received synch
-		while(synch_received == 0) {
-			ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
-			for (ConsumerRecord<String, GenericRecord> record : records) {
-				if((record.key()).toString().equals(key.toString())) {
-					System.out.printf("\noffset = %d, key = %s, value = %s\n\n", record.offset(), record.key(), record.value());
-					synch_received++;
+			while(pending == 0){
+				System.out.println("Option:		");
+				user_input = String.valueOf(System.console().readLine());
+				try {
+					number_input = Integer.parseInt(user_input);
+					System.out.println("Input String converted to: " + number_input + "\n");
+				} catch (NumberFormatException e) {
+					System.out.println("Please Enter a Valid Number");
+				}
+				if ((number_input >= 1) && (number_input <= 3)){
+					pending = 1;
+				}
+				else {
+					System.out.println("Please choose a specific option");
 				}
 			}
-		}
 
-		int count_time = 0;
-		String myresult = "";
-		while(asynch_received == 0){
-			if(count_time == 5){
-				System.out.printf(" Waiting for Asynchronous reply, While doing nothing\n\n\n");
-				count_time = 0;
-			}
-			try
-			{
-				Thread.sleep(40);
-				count_time++;
-			}
-			catch(InterruptedException ex)
-			{
-				Thread.currentThread().interrupt();
-			}
+			switch(number_input){
+				case 1:
+					file = "./src/main/java/infrastructureup.json";
+					break;
+				case 2:
+					file = "./src/main/java/infrastructureright_fakinou.json";
+					key = "WRONG";
+					break;
+				case 3:
+					file = "./src/main/java/infrastructureright.json";
+					break;
 
-			ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
-			for (ConsumerRecord<String, GenericRecord> record : records) {
-				if((record.key()).toString().equals(key.toString())) {
-					//System.out.printf("offset = %d, key = %s, value = %s\n\n", record.offset(), record.key(), record.value());
-					asynch_received++;
-					myresult = (record.value()).get("ACK_Message").toString();
+			}
+			
+			String json = new String(Files.readAllBytes(Paths.get(file)));
+			System.out.println(json);
+			////////////// READING JSON FROM FILE AND CREATING SCHEMA
+			// CHANGE producer -- > producer_insertion
+			
+			GenericRecord avroRecord = new GenericData.Record(schema);
+			avroRecord.put("Submission", json);
+			ProducerRecord<Object, Object> new_record = new ProducerRecord<>("insertion", key, avroRecord); // encryptedPassword = key
+			producer.send(new_record);
+			producer.flush();
+
+
+			//read until you have received synch
+			while(synch_received == 0) {
+				ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
+				for (ConsumerRecord<String, GenericRecord> record : records) {
+					if((record.key()).toString().equals(key.toString())) {
+						System.out.printf("\noffset = %d, key = %s, value = %s\n\n", record.offset(), record.key(), record.value());
+						synch_received++;
+					}
 				}
 			}
+
+			int count_time = 0;
+			String myresult = "";
+			while(asynch_received == 0){
+				if(count_time == 5){
+					System.out.printf(" Waiting for Asynchronous reply, While doing nothing\n\n\n");
+					count_time = 0;
+				}
+				try
+				{
+					Thread.sleep(40);
+					count_time++;
+				}
+				catch(InterruptedException ex)
+				{
+					Thread.currentThread().interrupt();
+				}
+
+				ConsumerRecords<String, GenericRecord> records = consumer.poll(100); // 100 is how long the poll with block if no data
+				for (ConsumerRecord<String, GenericRecord> record : records) {
+					if((record.key()).toString().equals(key.toString())) {
+						//System.out.printf("offset = %d, key = %s, value = %s\n\n", record.offset(), record.key(), record.value());
+						asynch_received++;
+						myresult = (record.value()).get("ACK_Message").toString();
+					}
+				}
+			}
+			String mystring = (myresult.split("Status: "))[1];
+			System.out.printf(mystring + "\n\n\n\n\n\n", myresult);
+
+			if(mystring.equals("Successfully Completed")){
+				retry = 1;
+			}
+			else{
+				System.out.printf("Please check your data and submit again\n");
+			}
 		}
-		String mystring = (myresult.split("Status: "))[1];
-		System.out.printf(mystring + "\n\n\n\n\n\n", myresult);
 
 
 		//close producer if we ever want to terminate the while loop
