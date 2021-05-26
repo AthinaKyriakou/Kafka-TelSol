@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-C:\Users\Dimosthenis\kafka-telsol\consumerApp\src\main\java\KafkaConsumerApplication.java
-C:\Users\Dimosthenis\kafka-telsol\consumerApp\target\generated-sources\io\confluent\examples\clients\basicavro\Payment.java
-C:\Users\Dimosthenis\kafka-telsol\consumerApp\target\generated-sources\io\confluent\examples\clients\basicavro\Point.java
-=======
-/home/athina/Desktop/kafka-telsol/consumerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Point.java
-/home/athina/Desktop/kafka-telsol/consumerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Payment.java
-/home/athina/Desktop/kafka-telsol/consumerApp/src/main/java/KafkaConsumerApplication.java
->>>>>>> 917940af35ccbafabed37136faac7a6488bf43e5
+/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/consumerApp/src/main/java/KafkaConsumerApplication.java
+/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/consumerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Payment.java
+/media/panso/Data/HDD_Documents/HMMY/Roh_L/9o_Systems/Παραδοτέο_4/kafka-telsol/consumerApp/target/generated-sources/io/confluent/examples/clients/basicavro/Point.java

@@ -196,20 +196,20 @@ public class KafkaProducerApplication  {
 			producer.send(login_record);
 			producer.flush();
 			
-			System.out.println("hereeeeee1");
+			//System.out.println("hereeeeee1");
 
 			validation_reply = 0;
 			while(validation_reply == 0){
 
-				System.out.println("hereeee2");
+			//	System.out.println("hereeee2");
 
 				ConsumerRecords<String, Integer> records = login_consumer.poll(100);
 				for(ConsumerRecord<String, Integer> validation_record : records) {
 					
-					System.out.println("hereeee3");
+			//		System.out.println("hereeee3");
 					if((validation_record.key()).toString().equals(key.toString())){
 						login = validation_record.value();
-						System.out.printf("\n\nVALUES READ" + validation_record.value()+" login : " + login + "\n\n");
+			//			System.out.printf("\n\nVALUES READ" + validation_record.value()+" login : " + login + "\n\n");
 						validation_reply = 1;
 					}
 				}

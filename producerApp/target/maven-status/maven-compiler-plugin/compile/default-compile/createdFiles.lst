@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-io\confluent\examples\clients\basicavro\KafkaProducerApplication.class
-io\confluent\examples\clients\basicavro\Payment$1.class
-io\confluent\examples\clients\basicavro\Payment$Builder.class
-io\confluent\examples\clients\basicavro\Payment.class
-=======
-io/confluent/examples/clients/basicavro/Payment.class
 io/confluent/examples/clients/basicavro/Payment$1.class
-io/confluent/examples/clients/basicavro/Payment$Builder.class
+io/confluent/examples/clients/basicavro/Payment.class
 io/confluent/examples/clients/basicavro/KafkaProducerApplication.class
->>>>>>> 917940af35ccbafabed37136faac7a6488bf43e5
+io/confluent/examples/clients/basicavro/Payment$Builder.class
