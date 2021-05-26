@@ -1,4 +1,4 @@
-# Kafka-telsol
+# Kafka TelSol
 
 ## About The Project
 This project was implemented as part of the IT Infrastructure Design class at ECE School of NTUA. It explores the synchronous and asynchronous communication capabilites of Apache Kafka in a microservices platform.
