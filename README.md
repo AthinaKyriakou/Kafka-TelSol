@@ -1,8 +1,7 @@
 # Kafka-telsol
-A NTUA IT Infrastructure Design Class project...
-JDBC Sink instructions adapted from this [video](https://www.youtube.com/watch?v=b-3qN_tlYR4).
 
-
+## About The Project
+This project was implemented as part of the IT Infrastructure Design class at ECE School of NTUA. It explores the synchronous and asynchronous communication capabilites of Apache Kafka in a microservices platform.
 
 ## Linux Installation Instructions
 
